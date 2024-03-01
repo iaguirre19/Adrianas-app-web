@@ -1,0 +1,37 @@
+.input-content{
+    width: 100%;
+    height: 100%;
+}
+.input-content{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.input-label{
+    position: absolute;
+    background-color: white;
+    padding: 0 .8rem;
+    top: -.8rem;
+    left: 2rem;
+}
+.input-label label{
+    font-size: var(--lf);
+}
+.icon-content{
+    position: absolute;
+    left: 1.6rem;
+}
+.input-inp{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
+}
+.input-data{
+    border: solid .1rem var(--lc);
+    border-radius: .8rem;
+    padding: 1.8rem 1.2rem 1.8rem 4.6rem;
+    width: 100%;
+    font-size: var(--phf);
+}
+

@@ -1,0 +1,19 @@
+.header-title-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.title-header{
+    font-size: var(--tf);
+    margin: 0 0;
+    font-weight: 400;
+    font-family: var(--font-t);
+}
+.subtitle-header{
+    margin: 0 0;
+    font-size: var(--stf);
+    width: 80%;
+    color: var(--tc);
+}

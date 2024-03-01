@@ -1,0 +1,44 @@
+:root{
+    --pc: #13446C;
+    --sc: #D23736;
+    --ic: #909090;
+    --bc:#DBDBDB;
+    --tc:#A2A2A2;
+    --lc:#A2A2A2;
+
+    /* Font family */
+
+    --font-g: "Roboto", sans-serif;
+    --font-t: "Roboto Slab", serif;
+
+    /* Font size */
+    --tf: 3rem;
+    --stf: 1.8rem;
+    --tnf: 1.6rem;
+    --phf: 1.4rem;
+    --lf: 1.2rem
+  
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1 rem es = a 10px*/
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-g);
+}
+
+#root{
+    background-color: white;
+    height: 100dvh;
+    overflow:hidden ;
+    display: grid;
+    place-content: center;
+}

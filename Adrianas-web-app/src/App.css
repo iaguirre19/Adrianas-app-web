@@ -1,0 +1,44 @@
+.signin-container{
+  width: 90dvw;
+  height: 80vh;
+  max-width: 1128px;
+  min-width: 1128px;
+  min-height: 600px;
+}
+.signin-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.left-side{
+  width: 100%;
+  height: 100%;
+  padding: 2rem 4.4rem;
+  border: .1rem solid black;
+  
+}
+.left-side{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-sizing: border-box;
+
+}
+.right-side{
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  /* … */
+  .signin-container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 800px auto;
+    margin: 0 auto;
+    min-width: 300px;
+    min-height: 800px;
+  }
+}
