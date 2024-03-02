@@ -3,7 +3,7 @@
   height: 80vh;
   max-width: 1128px;
   min-width: 1128px;
-  min-height: 600px;
+  min-height: 760px;
 }
 .signin-container{
   display: grid;
@@ -14,7 +14,6 @@
   width: 100%;
   height: 100%;
   padding: 2rem 4.4rem;
-  border: .1rem solid black;
   
 }
 .left-side{

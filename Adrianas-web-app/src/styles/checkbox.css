@@ -1,0 +1,23 @@
+.agreement-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 1.4rem;
+    /* margin-bottom: 6rem; */
+}
+.checkbox-content{
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
+    color: var(--tc);
+}
+.checkbox-content label{
+    font-size: var(--tnf);
+}
+.agreement-text{
+    margin: 0 0 ;
+    font-size: var(--tnf);
+    color: var(--tc);
+}
