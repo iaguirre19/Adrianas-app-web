@@ -1,11 +1,13 @@
 :root{
-    --pc: #13446C;
-    --sc: #D23736;
-    --ic: #909090;
-    --bc:#DBDBDB;
-    --tc:#A2A2A2;
-    --lc:  #A2A2A2;
-    --hbb: #1F4A6D;
+    --pc: #13446C;  /*Primary color*/
+    --sc: #D23736; /*secondary color*/
+    --ic: #909090; /*Icon color*/
+    --bc:hsl(0, 0%, 86%); 
+    --tcw:#ffffff;  /*Text color wite*/
+    --tcr:#DBDBDB; /*text color */
+    --subtc:#999999; /* subtitle color*/
+    --lc:  #A2A2A2; /*Line color*/
+    --hbb: #1F4A6D; 
 
     /* Font family */
 
@@ -16,6 +18,7 @@
     --tf: 3rem;
     --stf: 1.8rem;
     --tnf: 1.4rem;
+    --trc: 1.6rem;
     --phf: 1.4rem;
     --lf: 1.2rem
   
@@ -29,10 +32,10 @@ html {
 *:before,
 *:after {
     box-sizing: border-box;
-}
-body{
     margin: 0;
     padding: 0;
+}
+body{
     font-family: var(--font-g);
 }
 
@@ -42,4 +45,17 @@ body{
     overflow:hidden ;
     display: grid;
     place-content: center;
+}
+
+.z-bottom{
+    z-index: 10;
+}
+.z-top{
+    z-index: 20;
+}
+.z-back{
+    z-index: 15;
+}
+.z-modale{
+    z-index: 500;
 }

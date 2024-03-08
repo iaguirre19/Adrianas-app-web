@@ -1,0 +1,80 @@
+.custom-review-container{
+    height: 100%;
+    width: 100%;
+    background-image: url(../assets/images/matthew-lejune-8L_bURvgm0c-unsplash-2.jpg);
+    background-position: center center;
+    /* background-color: antiquewhite; */
+}
+.custom-review-container{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+}
+.top-review{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+}
+.progress-points{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: -1rem;
+    padding: 1rem;
+}
+.doble-quoutes-content{
+    margin-left: 1rem;
+}
+.review-content{
+    padding: 1.2rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.6rem;
+}
+
+.progress-dot{
+    margin-left: -.6rem;
+}
+
+.review-data{
+    width: 92%;
+    margin: 0 auto;
+}
+.review-text{
+    color: var(--tcr);
+    font-size: var(--trc);
+}
+.customer-data{
+    align-self: self-end;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6rem;
+    width: 100%;
+}
+.customer-data .data p{
+    color: var(--tcw);
+    font-size: var(--tnf);
+}
+.nav-button-wraper{
+    display: flex;
+    align-items: center;
+    column-gap: 1.8rem;
+    height: 100%;
+    padding: 0 1.8rem;
+}
+.backdrop{
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.47) 0%, rgba(0, 0, 0, 0.10) 100%);
+    
+}
+.icon-customer-review{
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}

@@ -4,7 +4,9 @@
   max-width: 1128px;
   min-width: 1128px;
   min-height: 760px;
+  position: relative;
 }
+
 .signin-container{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -28,6 +30,9 @@
 .right-side{
   height: 100%;
   width: 100%;
+}
+.otp-modale-container{
+  position: absolute;
 }
 
 @media (max-width: 800px) {
