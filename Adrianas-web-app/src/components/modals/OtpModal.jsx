@@ -4,9 +4,10 @@ import OtpTimer from "../timers/TimerOtp";
 import "../../styles/otpModale.css";
 import CustomButton from "../action/button/Button";
 
-const ModalOtp = ({ showModal, setModal }) => {
-  console.log(showModal);
+const ModalOtp = ({ showModal, setModal, phoneNumberTs}) => {
   
+  console.log(phoneNumberTs)
+
   const handleCancelButton = (e) => {
     e.preventDefault();
     console.log("Thiste click en el cancel")

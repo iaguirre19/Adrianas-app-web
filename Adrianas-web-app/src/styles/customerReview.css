@@ -3,7 +3,6 @@
     width: 100%;
     background-image: url(../assets/images/matthew-lejune-8L_bURvgm0c-unsplash-2.jpg);
     background-position: center center;
-    /* background-color: antiquewhite; */
 }
 .custom-review-container{
     display: flex;
@@ -22,8 +21,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: -1rem;
     padding: 1rem;
+    column-gap: 1.2rem;
 }
 .doble-quoutes-content{
     margin-left: 1rem;
@@ -77,4 +76,8 @@
     color: white;
     font-size: 1.8rem;
     cursor: pointer;
+}
+.icon-dot{
+    color: var(--lc);
+    font-size: 1rem;
 }

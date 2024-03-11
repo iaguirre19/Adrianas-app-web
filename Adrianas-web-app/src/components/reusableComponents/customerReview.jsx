@@ -1,24 +1,20 @@
 import DotIcon from '../icons/dot/Dot'
 import '../../styles/customerReview.css'
 import DoubleQuotes from '../../components/icons/double-quotes/DoubleQuotes'
+import {faCircle} from '@fortawesome/free-solid-svg-icons/faCircle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons/faArrowRight' 
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons/faArrowLeft' 
+import { useState } from 'react'
+
+
+ 
 
 
 
+const CustomerReview = ({customerInfo}) => {
+    const [reviewIndex,setReviewIndex] = useState(1)
 
-
-
-
-
-// const element = <FontAwesomeIcon icon={faHouse} />
-
-
-
-
-const CustomerReview = ({paginationReview, customerInfo,}) => {
-    
     
     return (
         <div className="custom-review-container">
@@ -29,9 +25,9 @@ const CustomerReview = ({paginationReview, customerInfo,}) => {
                     <DoubleQuotes color="var(--tcr)" width="2.2rem" />
                 </div>
                 <div className="progress-points">
-                    <DotIcon color="var(--pc)" width="2.6rem"/>
-                    <DotIcon color="var(--tcr)" width="2.6rem"/>
-                    <DotIcon color="var(--tcr)" width="2.6rem"/>
+                    <FontAwesomeIcon icon={faCircle} className='icon-dot'/>
+                    <FontAwesomeIcon icon={faCircle} className='icon-dot'/>
+                    <FontAwesomeIcon icon={faCircle} className='icon-dot'/>
                 </div>
                 </div>
                 <div className='review-content'>
@@ -44,10 +40,8 @@ const CustomerReview = ({paginationReview, customerInfo,}) => {
                         <p>{customerInfo.location}</p> 
                     </div>
                     <div className="nav-button-wraper">
-
                     <FontAwesomeIcon icon={faArrowLeft} className='icon-customer-review'/>
                     <FontAwesomeIcon icon={faArrowRight} className='icon-customer-review'/>
-                        {/* <FontAwesomeIcon icon={faMyIcon} /> */}
                     </div>
                 </div>
                 </div>

@@ -1,5 +1,5 @@
 
-const AgreTest = ({ isChecked, setIsChecked, handleBoxChange}) => {
+const CheckBoxAgree = ({ isChecked, setIsChecked, handleBoxChange}) => {
 
   return (
     <div className="agreement-container">
@@ -21,4 +21,4 @@ const AgreTest = ({ isChecked, setIsChecked, handleBoxChange}) => {
   );
 };
 
-export default AgreTest;
+export default CheckBoxAgree;
