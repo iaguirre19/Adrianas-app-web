@@ -29,13 +29,13 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [phoneNumberTs, setPhoneNumberTs] = useState('7777777');
+  const [phoneNumberCa, setPhoneNumberCa] = useState('');
 
 
-  console.log(phoneNumberTs)
+
   return (
     <div className="signin-page signin-container">
-      {showModal && <OtpModal phoneNumberTs={phoneNumberTs}/>}
+      {showModal && <OtpModal setShowModal={setShowModal} phoneNumberCa={phoneNumberCa}/>}
       <div className="left-side">
         <HeaderInput />
         <SignUpPage
@@ -43,7 +43,7 @@ function App() {
           setShowModal={setShowModal}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          setPhoneNumber={setPhoneNumberTs}
+          setPhoneNumberCa={setPhoneNumberCa}
         />
       </div>
       <div className="right-side">

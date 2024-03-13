@@ -1,6 +1,7 @@
 :root{
     --pc: #13446C;  /*Primary color*/
     --sc: #D23736; /*secondary color*/
+    --ec: #FF3333; /*secondary color*/
     --ic: #909090; /*Icon color*/
     --bc:hsl(0, 0%, 86%); 
     --tcw:#ffffff;  /*Text color wite*/
@@ -20,7 +21,11 @@
     --tnf: 1.4rem;
     --trc: 1.6rem;
     --phf: 1.4rem;
-    --lf: 1.2rem
+    --lf: 1.2rem;
+
+    /* Box shadowns */
+
+    --bnt-shadown: 0 2px 6px rgba(0, 0, 0, 0.2);
   
 }
 
@@ -58,4 +63,7 @@ body{
 }
 .z-modale{
     z-index: 500;
+}
+.active-error{
+    color: var(--ec);
 }

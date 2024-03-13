@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
-const OtpTimer = ({ initialSeconds, onTimerEnd }) => {
+const OtpTimer = ({ initialSeconds, onTimerEnd}) => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
+ 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setSeconds((prevSeconds) => {

@@ -1,4 +1,3 @@
-import DotIcon from '../icons/dot/Dot'
 import '../../styles/customerReview.css'
 import DoubleQuotes from '../../components/icons/double-quotes/DoubleQuotes'
 import {faCircle} from '@fortawesome/free-solid-svg-icons/faCircle'

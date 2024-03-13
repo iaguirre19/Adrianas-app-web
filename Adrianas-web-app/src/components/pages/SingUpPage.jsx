@@ -30,7 +30,7 @@ const CreateAnAccountFormTs = ({
   setShowModal,
   currentPage,
   setCurrentPage,
-  setPhoneNumberTs
+  setPhoneNumberCa
 }) => {
   // Button data
   const createAnAccountDataBtn = {
@@ -41,17 +41,17 @@ const CreateAnAccountFormTs = ({
   };
 
   // checkbox function
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const handleBoxChange = () => {
     setIsChecked(!isChecked);
   };
 
   // Inputs validations
   const [signUpInput, setSignUpInput] = useState({
-    name: "",
-    phoneNumber: "",
-    email: "",
-    policyNumber: "",
+    name: "Harry Styles",
+    phoneNumber: "7772562179",
+    email: "carrors.locos@gmail.com",
+    policyNumber: "857976231023",
   });
 
   // submit
@@ -83,9 +83,7 @@ const CreateAnAccountFormTs = ({
     }
 
     const newPhoneNumber = objectForm.phoneNumber;
-
-    console.log(setPhoneNumberTs)
-    // setPhoneNumberTs(newPhoneNumber)
+    setPhoneNumberCa(newPhoneNumber);
   };
 
   const handleChange = (event) => {
@@ -122,7 +120,7 @@ const CreateAnAccountFormTs = ({
       <form className="form-input-container" onSubmit={handleSubmit}>
         <div className="input-content">
           <div className="input-label">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Full Name</label>
           </div>
           <div className="input-inp">
             <div className="icon-content">
@@ -135,6 +133,7 @@ const CreateAnAccountFormTs = ({
               placeholder="Please enter your full name"
               value={signUpInput.name}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -153,6 +152,7 @@ const CreateAnAccountFormTs = ({
               placeholder="Please enter your phone number"
               value={signUpInput.phoneNumber}
               onChange={handleChange}
+              required
             />
           </div>
         </div>

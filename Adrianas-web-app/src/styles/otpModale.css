@@ -26,7 +26,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
     row-gap: 2.2rem;
 }
 
@@ -100,9 +99,16 @@
 }
 .gtp-code button{
     background-color: transparent;
-    padding: .2rem .8rem;
+    padding: .4rem 1rem;
     border-radius: .6rem;
     border: .1rem solid var(--lc);
+    cursor: pointer;
+}
+.gtp-code .active-error{
+    border: solid .1rem var(--ec);
+}
+.gtp-code button:hover{
+    box-shadow: var(--bnt-shadown);
 }
 .otp-btns{
     width: 100%;
@@ -115,8 +121,10 @@
 }
 .btn-container{
     width: 100%;
-
 }
-.cancel-btn{
+.cancel-bt{
     border: solid .1rem var(--lc);
+}
+.btn-container button:hover{
+    box-shadow: var(--bnt-shadown);
 }

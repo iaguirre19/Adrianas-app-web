@@ -1,27 +1,37 @@
 import PropTypes from "prop-types";
-import './Button.css'
+import "./Button.css";
 
-const CustomButton = ({text, background, textColor, width, type, border}) => {
+const CustomButton = ({
+  text,
+  background,
+  textColor,
+  width,
+  type,
+  border,
+  className,
+  onClick,
+}) => {
+  const buttonStyle = {
+    width: width,
+    backgroundColor: background,
+    color: textColor,
+    border: border,
+    className: className
+  };
 
-
-    const buttonStyle = {
-        width: width,
-        backgroundColor: background,
-        color: textColor,
-        border: border
-    }
-
-    return(
-        <div className='btn-container'>
-            <button  type={type} style={buttonStyle}>{text}</button>
-        </div>
-   ) 
-}
+  return (
+    <div className="btn-container">
+      <button onClick={onClick} className={className} type={type} style={buttonStyle}>
+        {text}
+      </button>
+    </div>
+  );
+};
 
 CustomButton.propTypes = {
-    text: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    textColor: PropTypes.string.isRequired
-}
+  text: PropTypes.string.isRequired,
+  background: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired
+};
 
-export default CustomButton
+export default CustomButton;
