@@ -5,21 +5,13 @@ import MailIcon from "../icons/mailicon/MailIcon";
 import PhoneIcon from "../icons/phoneicon/PhoneIcon";
 import UserIcon from "../icons/userIcon/UserIcon";
 import CustomButton from "../action/button/Button";
-import StatusBar from "../reusableComponents/progressBar";
 import AgreTest from "../action/agreementCheckBox/CheckBoxAgree";
+import FormHeader from '../reusableComponents/FormHeader'
 import "../../styles/signUpStyles.css";
 import "../../styles/header-title.css";
 import "../../styles/checkbox.css";
 import "../../styles/button.css";
 
-const FormHeader = ({ title, subTitle }) => {
-  return (
-    <div className="header-title-container">
-      <h1 className="title-header">{title}</h1>
-      <p className="subtitle-header">{subTitle}</p>
-    </div>
-  );
-};
 
 const validate = (isChecked) => {
   return isChecked;
@@ -28,9 +20,8 @@ const validate = (isChecked) => {
 const CreateAnAccountFormTs = ({
   dataHeader,
   setShowModal,
-  currentPage,
-  setCurrentPage,
   setPhoneNumberCa
+
 }) => {
   // Button data
   const createAnAccountDataBtn = {
@@ -209,7 +200,6 @@ const CreateAnAccountFormTs = ({
           border="none"
         />
       </form>
-      <StatusBar currentPage={currentPage} />
     </div>
   );
 };

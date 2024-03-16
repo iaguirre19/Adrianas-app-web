@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+
+
 
 const OtpTimer = ({ initialSeconds, onTimerEnd}) => {
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -30,4 +33,8 @@ const OtpTimer = ({ initialSeconds, onTimerEnd}) => {
   );
 };
 
+OtpTimer.propTypes = {
+  initialSeconds: PropTypes.number.isRequired,
+  onTimerEnd: PropTypes.func.isRequired
+}
 export default OtpTimer;

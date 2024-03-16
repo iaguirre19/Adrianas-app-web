@@ -3,12 +3,15 @@
     --sc: #D23736; /*secondary color*/
     --ec: #FF3333; /*secondary color*/
     --ic: #909090; /*Icon color*/
+    --ich: #000000;
+    --vc: #33cc33;
     --bc:hsl(0, 0%, 86%); 
     --tcw:#ffffff;  /*Text color wite*/
     --tcr:#DBDBDB; /*text color */
     --subtc:#999999; /* subtitle color*/
     --lc:  #A2A2A2; /*Line color*/
     --hbb: #1F4A6D; 
+    
 
     /* Font family */
 

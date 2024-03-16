@@ -1,0 +1,15 @@
+.check-icon-container{
+    position: absolute;
+    right: 2rem;
+}
+.icon-styles{
+    font-size: 1.4rem;
+    color: var(--ic);
+    cursor: pointer;
+}
+.show-password{
+    color: var(--ic);
+}
+.show-password:hover{
+    color: var(--ich);
+}
