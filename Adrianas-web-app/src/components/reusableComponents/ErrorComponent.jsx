@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const ErrorMessages = ({text, setOtpError}) => {
 
-  useEffect(() => {
-    setTimeout(() => {
-      setOtpError(false)
-    }, 4000)
-  },[])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setOtpError(false)
+  //   }, 4000)
+  // },[])
 
 
     return (
@@ -18,9 +18,9 @@ const ErrorMessages = ({text, setOtpError}) => {
 
 };
 
-// ErrorMessages.propTypes = {
-//   text: PropTypes.string.isRequired,
-//   setOtpError: PropTypes.func.isRequired
-// }
+ErrorMessages.propTypes = {
+  text: PropTypes.string.isRequired,
+  setOtpError: PropTypes.func.isRequired
+}
 
 export default ErrorMessages

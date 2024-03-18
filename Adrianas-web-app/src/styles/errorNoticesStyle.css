@@ -1,0 +1,14 @@
+.error-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.error-notices{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+.error-notices span, .Xmark{
+    color: var(--ec);
+    font-size: var(--tnf);
+}
