@@ -7,11 +7,11 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 
 const ErrorNotices = ({ text, status }) => {
   
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //     status(false);
-    //     }, 4000);
-    // }, []);
+    useEffect(() => {
+        setTimeout(() => {
+        status(false);
+        }, 4000);
+    }, []);
 
     return (
         <div className="error-notices">

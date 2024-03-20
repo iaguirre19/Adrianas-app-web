@@ -1,0 +1,38 @@
+.confirmation-container{
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 6.4rem;
+}
+.confirmation-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3.4rem;
+}
+.confirmation-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: .8rem;
+}
+.confirmation-data .confirmation-text{
+    font-size: var(--tf);
+}
+.confirmation-data .confirmation-content-text{
+    font-size: var(--stf);
+    color: var(--subtc);
+    font-weight: 400;
+    width: 56%;
+    margin: 0 auto;
+    text-align: center;
+}
+.confirmation-data .confirmation-content-text span{
+    color: black;
+}
+.confirmation-container .btn-container{
+    height: auto;
+}

@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 const ErrorMessages = ({text, setOtpError}) => {
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setOtpError(false)
-  //   }, 4000)
-  // },[])
+  useEffect(() => {
+    setTimeout(() => {
+      setOtpError(false)
+    }, 4000)
+  },[])
 
 
     return (

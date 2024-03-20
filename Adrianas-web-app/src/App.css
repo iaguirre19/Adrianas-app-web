@@ -1,6 +1,6 @@
 .signin-container{
   width: 90dvw;
-  height: 80vh;
+  height: 90vh;
   max-width: 1128px;
   min-width: 1128px;
   min-height: 760px;
@@ -27,9 +27,15 @@
   box-sizing: border-box;
 
 } */
-.left-side{
+/* .left-side{
   display: grid;
   grid-template-rows: 10% 2fr 10%;
+} */
+
+.left-side{
+  display: flex;
+  flex-direction: column;
+  
 }
 .right-side{
   height: 100%;

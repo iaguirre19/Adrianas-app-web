@@ -1,30 +1,88 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/inputStyles.css";
-import '../../styles/passwordFormStyle.css'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faKey,
-  faEye,
-  faEyeSlash,
-  faXmark,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faKey, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import CustomButton from "../action/button/Button";
+import ErrorNotices from "../reusableComponents/ErrorNotices";
 
-import Button from "../action/button/CustomButton";
-import FormHeader from "../reusableComponents/FormHeader";
-import PropTypes from "prop-types";
+const PasswordFormts = ({
+  dataHeader,
+  email,
+  setStep,
+  setRegistrationData
 
-const PasswordForm = ({ dataHeader, setStep }) => {
+}) => {
+
+  const { title, subTitle } = dataHeader;
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     repeatPassword: "",
   });
 
-  // Password validation
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [storedData, setStoredData] = useState(null);
+  const [statusError, setStatusError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([
+    {
+      mismatchPassword: {
+        text: "The password doesn't match, please try again.",
+      },
+      missingFields: {
+        text: "Please fill out all the inputs.",
+      },
+    },
+  ]);
+  const [textError, setTextError] = useState("");
+
+  const [
+    {
+      mismatchPassword: { text: mismatchPasswordErrorMessage },
+      missingFields: { text: missingFieldsErrorMessages },
+    },
+  ] = errorMessages;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "password") {
+      setFormData({ ...formData, [name]: value });
+      setIsTyping(true);
+    } else if (name === "repeatPassword") {
+      setFormData({ ...formData, [name]: value });
+      // setRepeatPassword(value);
+    }
+
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const isAnyFieldEmpty = Object.values(formData).some(
+      (value) => value === ""
+    );
+
+    if (formData.password !== formData.repeatPassword) {
+      console.log(formData.password)
+      console.log(formData.repeatPassword)
+      setStatusError(true);
+      setTextError(mismatchPasswordErrorMessage);
+      return;
+    } else if (isAnyFieldEmpty) {
+      setStatusError(true);
+      setTextError(missingFieldsErrorMessages);
+    } else {
+      const userPassData = { ...formData };
+      setStoredData(userPassData);
+      setStep(1)
+      console.log("paso la validation")
+    }
+
+  };
+
+  // Validate the password
 
   const validatePassword = () => {
     const { password } = formData;
@@ -38,75 +96,46 @@ const PasswordForm = ({ dataHeader, setStep }) => {
 
     return validations;
   };
+
   const passwordValidations = validatePassword();
 
-  // Password code
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "password") {
-      setFormData({ ...formData, [name]: value });
-      setIsTyping(true);
-    } else if (name === "repeatPassword") {
-      setFormData({ ...formData, [name]: value });
-      // setRepeatPassword(value);
-    }else if(name === "email"){
-      setFormData({ ...formData, [name]: value });
-    }
+  const passwordDataBtn = {
+    text: "Create An Account",
+    width: "100%",
+    background: "--pc",
+    textColor: "white",
   };
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleCheck = () => {
+  const handleClick =(e) => {
+    e.preventDefault()
+    console.log(e)
+    setStep(3)
+    // const isAnyFieldEmpty = Object.values(formData).some(
+    //   (value) => value === ""
+    // );
 
-
-    console.log(formData)
-    let validationPassed = true
-
-    const isAnyFieldEmpty = Object.values(formData).some(
-      (value) => value === ""
-    );
-
-    if(isAnyFieldEmpty){
-      return validationPassed = false
-    }else{
-      validationPassed = true
-    }
-
-
-
-    return validationPassed
+    // if (formData.password !== formData.repeatPassword) {
+    //   setStatusError(true);
+    //   setTextError(mismatchPasswordErrorMessage);
+    //   return;
+    // } else if (isAnyFieldEmpty) {
+    //   setStatusError(true);
+    //   setTextError(missingFieldsErrorMessages);
+    // } else {
+    //   const userPassData = { ...formData };
+    //   // setStoredData(userPassData);
+    //   setStep(4)
+    //   console.log("paso la validation")
+    // }
   }
-
-  // Submit code
-  const handleOnClick = (e) => {
-    e.preventDefault();
-    (handleCheck())
-    if(handleCheck()){
-      setStep(4);
-    }
-  };
-
-
-  // Styles and properties compnents
-  const passwordDataBtn = {
-    text: "Create An Account",
-    width: "100%",
-    background: "--pc",
-    textColor: "white",
-    type: "submit",
-    border: "none",
-    className: "btn-password-form",
-    onClick: handleOnClick,
-  };
 
   return (
     <div className="password-container">
-      <FormHeader title={dataHeader.title} subTitle={dataHeader.subTitle} />
+      <FormHeader title={title} subTitle={subTitle} />
       <form className="password-form">
         <div className="input-container">
           <div className="input-content">
@@ -122,8 +151,7 @@ const PasswordForm = ({ dataHeader, setStep }) => {
                 type="text"
                 name="email"
                 placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
+                value={formData.value}
               />
             </div>
           </div>
@@ -186,97 +214,76 @@ const PasswordForm = ({ dataHeader, setStep }) => {
               style={{
                 color: isTyping
                   ? passwordValidations[0]
-                  ? "var(--vc)"
-                  : "var(--ec)"
+                    ? "green"
+                    : "red"
                   : "#ccc",
               }}
             >
-              {isTyping ? (
-                passwordValidations[0] ? (
-                  <FontAwesomeIcon icon={faCheck} />
-                ) : (
-                  <FontAwesomeIcon icon={faXmark} />
-                )
-              ) : (
-                "-"
-              )}{" "}
-              Password should have at least 8 characters
+              {isTyping ? (passwordValidations[0] ? "✓" : "✗") : "-"} Password
+              should have at least 8 characters
             </span>
             <span
               style={{
                 color: isTyping
                   ? passwordValidations[1]
-                  ? "var(--vc)"
-                  : "var(--ec)"
+                    ? "green"
+                    : "red"
                   : "#ccc",
               }}
             >
-              {isTyping ? (passwordValidations[1] ? (
-                  <FontAwesomeIcon icon={faCheck} />
-                ) : (
-                  <FontAwesomeIcon icon={faXmark} />
-                )) : "-"} Password
+              {isTyping ? (passwordValidations[1] ? "✓" : "✗") : "-"} Password
               should have at least one uppercase letter
             </span>
             <span
-              style={{color: isTyping ? passwordValidations[2] ? "var(--vc)" : "var(--ec)" : "#ccc",}}>
-              {isTyping ? (passwordValidations[2] ? (
-                  <FontAwesomeIcon icon={faCheck} />
-                ) : (
-                  <FontAwesomeIcon icon={faXmark} />
-                )) : "-"} Password
+              style={{
+                color: isTyping
+                  ? passwordValidations[2]
+                    ? "green"
+                    : "red"
+                  : "#ccc",
+              }}
+            >
+              {isTyping ? (passwordValidations[2] ? "✓" : "✗") : "-"} Password
               should have at least one lowercase letter
             </span>
             <span
               style={{
                 color: isTyping
                   ? passwordValidations[3]
-                    ? "var(--vc)"
-                    : "var(--ec)"
+                    ? "green"
+                    : "red"
                   : "#ccc",
               }}
             >
-              {isTyping ? (passwordValidations[3] ? (
-                  <FontAwesomeIcon icon={faCheck} />
-                ) : (
-                  <FontAwesomeIcon icon={faXmark} />
-                )) : "-"} Password
+              {isTyping ? (passwordValidations[3] ? "✓" : "✗") : "-"} Password
               should have at least one number
             </span>
             <span
               style={{
                 color: isTyping
                   ? passwordValidations[4]
-                  ? "var(--vc)"
-                  : "var(--ec)"
+                    ? "green"
+                    : "red"
                   : "#ccc",
               }}
             >
-              {isTyping ? (passwordValidations[4] ? (
-                  <FontAwesomeIcon icon={faCheck} />
-                ) : (
-                  <FontAwesomeIcon icon={faXmark} />
-                )) : "-"} Password
+              {isTyping ? (passwordValidations[4] ? "✓" : "✗") : "-"} Password
               should have at least one special character
             </span>
-            {/* <div className="error-container">
+
+            <div className="error-container">
               {statusError && (
                 <ErrorNotices text={textError} status={setStatusError} />
               )}
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="btn-container">
-          <Button buttonData={passwordDataBtn} />
+          
         </div>
       </form>
     </div>
   );
 };
 
-PasswordForm.propTypes = {
-  dataHeader: PropTypes.object.isRequired,
-  setStep: PropTypes.func.isRequired,
-};
-
-export default PasswordForm;
+export default PasswordFormts;

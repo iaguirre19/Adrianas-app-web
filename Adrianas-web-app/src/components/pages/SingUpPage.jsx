@@ -7,10 +7,13 @@ import UserIcon from "../icons/userIcon/UserIcon";
 import CustomButton from "../action/button/Button";
 import AgreTest from "../action/agreementCheckBox/CheckBoxAgree";
 import FormHeader from '../reusableComponents/FormHeader'
+import ErrorNotices from "../reusableComponents/ErrorNotices";
+
 import "../../styles/signUpStyles.css";
 import "../../styles/header-title.css";
 import "../../styles/checkbox.css";
 import "../../styles/button.css";
+import ErrorMessages from "../reusableComponents/ErrorComponent";
 
 
 const validate = (isChecked) => {
@@ -19,9 +22,10 @@ const validate = (isChecked) => {
 
 const CreateAnAccountFormTs = ({
   dataHeader,
-  setShowModal,
-  setPhoneNumberCa
-
+  setModalStatus,
+  registrationData,
+  setRegistrationData,
+  setStep
 }) => {
   // Button data
   const createAnAccountDataBtn = {
@@ -31,52 +35,28 @@ const CreateAnAccountFormTs = ({
     textColor: "white",
   };
 
+
   // checkbox function
   const [isChecked, setIsChecked] = useState(true);
   const handleBoxChange = () => {
     setIsChecked(!isChecked);
   };
 
-  // Inputs validations
-  const [signUpInput, setSignUpInput] = useState({
-    name: "Harry Styles",
-    phoneNumber: "7772562179",
-    email: "carrors.locos@gmail.com",
-    policyNumber: "857976231023",
-  });
+  // const [signUpInput, setSignUpInput] = useState({
+  //   name: "Harry Styles",
+  //   phoneNumber: "7772562179",
+  //   email: "carrors.locos@gmail.com",
+  //   policyNumber: "857976231023",
+  // });
+  // const [signUpInput, setSignUpInput] = useState({
+  //   name: "",
+  //   phoneNumber: "",
+  //   email: "",
+  //   policyNumber: "",
+  // });
 
   // submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { name, phoneNumber, email, policyNumber } = signUpInput;
-
-    if (
-      !name.trim() ||
-      !phoneNumber.trim() ||
-      !email.trim() ||
-      !policyNumber.trim()
-    ) {
-      return console.log("Please type in all the inputs");
-    }
-
-    if (validate(isChecked)) {
-      setShowModal(true);
-    } else {
-      console.log("Please check the termns and conditions");
-    }
-
-
-    const objectForm = {
-      name,
-      phoneNumber,
-      email,
-      policyNumber
-    }
-
-    const newPhoneNumber = objectForm.phoneNumber;
-    setPhoneNumberCa(newPhoneNumber);
-  };
-
+  
   const handleChange = (event) => {
     // This code stores in a variable the type of input that we are currently typing. Taking in the first variable the name of the input.Then, In the second one, It is storing the value of this input.
     const { name, value } = event.target;
@@ -90,11 +70,50 @@ const CreateAnAccountFormTs = ({
       formattedValue = formatPhoneNumber(formattedValue);
     }
 
-    setSignUpInput((prevState) => ({
+    setRegistrationData((prevState) => ({
       ...prevState,
       [name]: formattedValue,
     }));
   };
+
+
+  const [errorStatus, setErrorStatus] = useState(false)
+  const [message, setMessages] = useState("") 
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, phoneNumber, email, policyNumber } = registrationData;
+
+    if (
+      !name.trim() ||
+      !phoneNumber.trim() ||
+      !email.trim() ||
+      !policyNumber.trim()
+    ) {
+      setErrorStatus(true)
+      setMessages("Some fields are missing. Please complete all required information.")
+    }
+
+    if (validate(isChecked)) {
+      setModalStatus(true)
+      setStep(2)
+    } else {
+      // ===============================================work here ================
+      setErrorStatus(true);
+      setMessages("Please accept the terms and conditions to proceed")
+    }
+
+
+    const objectForm = {
+      name,
+      phoneNumber,
+      email,
+      policyNumber
+    }
+
+    setRegistrationData(objectForm)
+  };
+
 
   // Inputs Formats
   const formatPolicyNumber = (value) => {
@@ -122,7 +141,7 @@ const CreateAnAccountFormTs = ({
               type="text"
               name="name"
               placeholder="Please enter your full name"
-              value={signUpInput.name}
+              value={registrationData.name}
               onChange={handleChange}
               required
             />
@@ -141,7 +160,7 @@ const CreateAnAccountFormTs = ({
               type="tel"
               name="phoneNumber"
               placeholder="Please enter your phone number"
-              value={signUpInput.phoneNumber}
+              value={registrationData.phoneNumber}
               onChange={handleChange}
               required
             />
@@ -161,7 +180,7 @@ const CreateAnAccountFormTs = ({
               name="email"
               placeholder="Please enter your email address"
               required
-              value={signUpInput.email}
+              value={registrationData.email}
               onChange={handleChange}
             />
           </div>
@@ -180,7 +199,7 @@ const CreateAnAccountFormTs = ({
               name="policyNumber"
               placeholder="0000 - 5766 - 43565"
               maxLength={12}
-              value={signUpInput.policyNumber}
+              value={registrationData.policyNumber}
               onChange={handleChange}
             />
           </div>
@@ -190,6 +209,9 @@ const CreateAnAccountFormTs = ({
           setIsChecked={setIsChecked}
           handleBoxChange={handleBoxChange}
         />
+        <div className="signup-error-messages">
+          {errorStatus && <ErrorNotices text={message} status={setErrorStatus} />}
+        </div>
 
         <CustomButton
           text={createAnAccountDataBtn.text}

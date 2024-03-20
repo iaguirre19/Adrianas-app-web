@@ -5,15 +5,17 @@ import "../../styles/otpModale.css";
 import CustomButton from "../action/button/Button";
 import VerifiedPhoneIcon from "../icons/verifiedPhone/VerifiedPhone";
 import ErrorMessages from '../reusableComponents/ErrorComponent'
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 
 const ModalOtp = ({
-  phoneNumberCa, 
-  setShowModal, 
+  phoneNumber, 
+  setModalStatus,
   codeOTP,
-  setIsOTPVerified
+  setIsOTPVerified,
+  setStep
 }) => {
+
 
   const [errorMessages, setErrorMessages] = useState({
     text: ""
@@ -135,7 +137,8 @@ const ModalOtp = ({
   // events provided by the cancel button.
   const handleCancelButton = () => {
     console.log('click en cancel button')
-    setShowModal(false)
+    // setModalStatus(false)
+    setStep(1)
   };
   const handleResendBtn = (e) => {
     e.preventDefault();
@@ -151,8 +154,9 @@ const ModalOtp = ({
     const isVerified = handleCheckOTP()
     if(isVerified){
       setTimeout(() => {
-        // setShowModal(false)
         setIsOTPVerified(true)
+        setModalStatus(false)
+        setStep(3)
       }, 1500)
     }
   };
@@ -179,7 +183,7 @@ const ModalOtp = ({
 
 
   // Showing the user number in the following way (***)***-****
-  const cleanedNumber = phoneNumberCa.replace(/\D/g, "");
+  const cleanedNumber = phoneNumber.replace(/\D/g, "");
   const formattedNumber = `(${cleanedNumber.slice(0, 3)})${cleanedNumber.slice(
     3,
     6
@@ -265,9 +269,9 @@ const ModalOtp = ({
   );
 };
 
-ModalOtp.propTypes = {
-  phoneNumberCa: PropTypes.string.isRequired,
-  setShowModal: PropTypes.func.isRequired
-}
+// ModalOtp.propTypes = {
+//   phoneNumber: PropTypes.string.isRequired,
+//   setShowModal: PropTypes.func.isRequired
+// }
 
 export default ModalOtp;

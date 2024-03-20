@@ -53,3 +53,12 @@
     width: 1.4rem;
     height: 1.4rem;
 }
+.signup-error-messages{
+    height: 3rem;
+   width: 100%;
+   position: relative;
+}
+.signup-error-messages .error-notices{
+    position: absolute;
+    top: -1rem;
+}
