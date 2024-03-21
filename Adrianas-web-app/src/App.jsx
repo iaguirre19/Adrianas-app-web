@@ -1,32 +1,36 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import "./styles/passwordFormStyle.css";
-import HeaderInput from "./components/reusableComponents/headerLeftSide";
 import CustomerReview from "./components/reusableComponents/customerReview";
-import OtpModal from "./components/modals/OtpModal";
-import SignUpPage from "./components/pages/SingUpPage";
-import PasswordForm from "./components/pages/PasswordForm";
+import HeaderInput from "./components/reusableComponents/headerLeftSide";
 import StatusBar from "./components/reusableComponents/progressBar";
+import SignUpPage from "./components/pages/SingUpPage";
+import OtpModal from "./components/modals/OtpModal";
+import PasswordForm from "./components/pages/PasswordForm";
 import ConfirmationDialog from "./components/reusableComponents/ConfirmationDialog";
+import "./App.css";
+import LoginComponent from "./components/pages/Login";
 
-
-function App() {
-  const customerData = {
+const Apps = () => {
+  const [customerData, setCustomerData] = useState({
     firstUser: {
       review:
         "Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim, sed ante dapibus feugiat quis vehicula nec semper, montes sagittis vitae parturient",
-      fullName: "Claudia Sheinbuam ",
+      fullName: "Claudia Sheinbuam",
       location: "Rancho Customer",
     },
-  };
+  });
+  const [modalStatus, setModalStatus] = useState(false);
+  const [registrationData, setRegistrationData] = useState({
+    name: "Harry Styles",
+    phoneNumber: "7772562179",
+    email: "carrors.locos@gmail.com",
+    policyNumber: "857976231023",
+  });
 
-  const dataHeaderForm = {
-    createFormH: {
-      title: "Create an Account",
-      subTitle:
-        "Drive Secure, Drive Confidently: Join Adrianas Insurance Today!",
-    },
-  };
+  const [step, setStep] = useState(1);
+  const [currentStepBar, setCurrentStepBar] = useState(1);
+  const [codeOTP, setCodeOTP] = useState(["2", "6", "4", "2", "3"]);
+  const [isOTPVerified, setIsOTPVerified] = useState(false);
+  const [authMode, setAuthMode] = useState('signup');
 
   const headerFormData = [
     {
@@ -40,59 +44,72 @@ function App() {
     },
   ];
   const firstUser = customerData.firstUser;
-  const headerData = dataHeaderForm.createFormH;
-
-  // State of the modal
-  const [showModal, setShowModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(2);
-  const [passwordCreated, setPasswordCreated] = useState(false);
-  const [phoneNumberCa, setPhoneNumberCa] = useState("");
-  const [dataFromUser, setDatafromUser] = useState({
-    phoneNumber: "",
-    email: "",
-  })
-  const [codeOTP, setCodeOTP] = useState(["2", "6", "4", "2", "3"]);
-  const [isOTPVerified, setIsOTPVerified] = useState(true);
-
-  useEffect(() => {
-    setShowModal(false);
-  }, [isOTPVerified]);
+  const phoneNumber = registrationData.phoneNumber;
 
   return (
-    <div className="signin-page signin-container">
-      {showModal && (
+    <div className="main-conatainer">
+      {modalStatus && (
         <OtpModal
-          setShowModal={setShowModal}
-          phoneNumberCa={phoneNumberCa}
+          setModalStatus={setModalStatus}
+          phoneNumber={phoneNumber}
           codeOTP={codeOTP}
           setIsOTPVerified={setIsOTPVerified}
+          setStep={setStep}
         />
       )}
-      <div className="left-side">
-        <HeaderInput />
-        {passwordCreated ? (
-          isOTPVerified ? (
-            <PasswordForm dataHeader={headerFormData} />
-          ) : (
+      <div className="signin-page signin-container">
+        <div className="left-side">
+          <HeaderInput />
+
+
+        {authMode === 'signin' ? <LoginComponent /> : (step === 1 && (
             <SignUpPage
-              dataHeader={headerData}
-              setShowModal={setShowModal}
-              setCurrentPage={setCurrentPage}
-              setPhoneNumberCa={setPhoneNumberCa}
+              dataHeader={headerFormData[0]}
+              setModalStatus={setModalStatus}
+              setStep={setStep}
               codeOTP={codeOTP}
               setCodeOTP={setCodeOTP}
+              registrationData={registrationData}
+              setRegistrationData={setRegistrationData}
             />
-          )
-        ) : (
-          <ConfirmationDialog title="Congratulations!" content="Your account has been successfully created." spanContent="Welcome aboard!"/>
-        )}
-        <StatusBar currentPage={currentPage} />
-      </div>
-      <div className="right-side">
-        <CustomerReview customerInfo={firstUser} />
+          ))}
+
+
+
+          {/* {step === 1 && (
+            <SignUpPage
+              dataHeader={headerFormData[0]}
+              setModalStatus={setModalStatus}
+              setStep={setStep}
+              codeOTP={codeOTP}
+              setCodeOTP={setCodeOTP}
+              registrationData={registrationData}
+              setRegistrationData={setRegistrationData}
+            />
+          )} */}
+          {step === 3 && (
+            <PasswordForm
+              dataHeader={headerFormData[1]}
+              setStep={setStep}
+              setCurrentStepBar={setCurrentStepBar}
+            />
+          )}
+          {step == 4 && (
+            <ConfirmationDialog
+              title="Congratulations!"
+              content="Your account has been successfully created."
+              spanContent="Welcome aboard!"
+            />
+          )}
+
+          <StatusBar currentPage={currentStepBar} />
+        </div>
+        <div className="right-side">
+          <CustomerReview customerInfo={firstUser} />
+        </div>
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Apps;

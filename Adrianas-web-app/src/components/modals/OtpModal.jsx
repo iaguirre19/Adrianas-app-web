@@ -1,78 +1,43 @@
-import { useState} from "react";
+import { useState } from "react";
 import OtpIcon from "../icons/otpIcon/otpIcon";
 import OtpTimer from "../timers/TimerOtp";
 import "../../styles/otpModale.css";
-import CustomButton from "../action/button/Button";
 import VerifiedPhoneIcon from "../icons/verifiedPhone/VerifiedPhone";
-import ErrorMessages from '../reusableComponents/ErrorComponent'
-// import PropTypes from "prop-types";
-
+import Button from "../action/button/CustomButton";
+import ErrorNotices from "../reusableComponents/ErrorNotices";
+import PropTypes from "prop-types";
 
 const ModalOtp = ({
-  phoneNumber, 
+  phoneNumber,
   setModalStatus,
   codeOTP,
   setIsOTPVerified,
-  setStep
+  setStep,
 }) => {
-
-
   const [errorMessages, setErrorMessages] = useState({
-    text: ""
+    text: "",
   });
-  const [approvedOTP, setApprovedOTP] =useState(false);
-  const [otpError, setOtpError] = useState(false)
+
+  const [otpError, setOtpError] = useState(false);
   // Verified otp
-  const [VerifiedOTP, setVerifiedOTP] = useState(false)
+  const [VerifiedOTP, setVerifiedOTP] = useState(false);
   //OTP Inputs
   // const [otp, setOTP] = useState(["", "", "", "", ""]);
   const [otp, setOTP] = useState(["2", "6", "4", "2", "3"]);
   //Manages the errrors colors.
   const [otpValidationStatus, setOtpValidationStatus] = useState(true);
-  const [restartKey, setRestartKey] = useState(0)
-
-
-
-
-
-  const handleButtonState = (approved) => {
-    if (!approved) {
-      return (
-        <>
-          <CustomButton
-            text="Cancel"
-            background="white"
-            textColor="var(--pc)"
-            width="100%"
-            border="solid .1rem var(--lc)"
-            onClick={handleCancelButton}
-            className="cancel-bt"
-          />
-          <CustomButton
-            text="Veryfy"
-            background="var(--pc)"
-            textColor="white"
-            width="100%"
-            type="submit"
-            className={verify.className}
-          />
-        </>
-      );
-    } else {
-        return console.log("La verificacion fue aprobado")
-    }
-  };
+  const [restartKey, setRestartKey] = useState(0);
 
   //OTP Inputs only numbers values
-  const handleChange  = (index, value) => {
-    if(/^\d*$/.test(value)){
-      setOTP(prevOTP => {
+  const handleChange = (index, value) => {
+    if (/^\d*$/.test(value)) {
+      setOTP((prevOTP) => {
         const newOTP = [...prevOTP];
         newOTP[index] = value;
-        return newOTP
-      })
+        return newOTP;
+      });
     }
-  }
+  };
 
   // check if there is a space
   const handleCheckOTP = () => {
@@ -80,37 +45,35 @@ const ModalOtp = ({
     const otpString = otp.join("");
     const codeString = codeOTP.join("");
 
-
     otp.forEach((value) => {
-      if(value.trim() === ""){
-        allFilled = false; 
-        setOtpError(true)
-        setOtpValidationStatus(false)
-        setErrorMessages(prevState => ({
-          ...prevState, text: "One or more fields are empty. Please fill them all in."
-        }))
-        return       
+      if (value.trim() === "") {
+        allFilled = false;
+        setOtpError(true);
+        setOtpValidationStatus(false);
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          text: "One or more fields are empty. Please fill them all in.",
+        }));
+        return;
       }
     });
 
-    if(!allFilled){
-      return
+    if (!allFilled) {
+      return;
     }
 
-    if(otpString === codeString){
-      setApprovedOTP(true);
-      setVerifiedOTP(true)
-      return true
-    }else{
-      setOtpError(true)
-      setOtpValidationStatus(false)
-      setErrorMessages(prevState => ({
-        ...prevState, text: "The OTP code entered is incorrect. Please try again."
+    if (otpString === codeString) {
+      setVerifiedOTP(true);
+      return true;
+    } else {
+      setOtpError(true);
+      setOtpValidationStatus(false);
+      setErrorMessages((prevState) => ({
+        ...prevState,
+        text: "The OTP code entered is incorrect. Please try again.",
       }));
     }
-
-
-  }
+  };
 
   const otpStatusColor = otpValidationStatus ? "var(--pc)" : "var(--ec)";
 
@@ -119,10 +82,10 @@ const ModalOtp = ({
     setOTP(emptyOtp);
     setOtpValidationStatus(true);
   };
-  
+
   // Timer function
   const eventsErrorModal = (status) => (!status ? "active-error" : "");
-  
+
   //Reset the timer when the user doesn't type the OTP code on time.
   const handleTimerEnd = () => {
     setOtpValidationStatus(false);
@@ -130,37 +93,37 @@ const ModalOtp = ({
 
   const handleTimeRestart = () => {
     resetOtpFields();
-    setVerifiedOTP(false)
+    setVerifiedOTP(false);
     setRestartKey(restartKey + 1);
   };
 
   // events provided by the cancel button.
-  const handleCancelButton = () => {
-    console.log('click en cancel button')
+  const handleCancelButton = (e) => {
+    e.preventDefault();
+    console.log("click en cancel button");
     // setModalStatus(false)
-    setStep(1)
+    setStep(1);
+    setModalStatus(false);
   };
   const handleResendBtn = (e) => {
     e.preventDefault();
     // Here will go the function to request to the backend a new otp
     handleTimeRestart();
-    setOtpError(false)
-    setApprovedOTP(false)
+    setOtpError(false);
   };
-
 
   const handleVerified = (e) => {
-    e.preventDefault()
-    const isVerified = handleCheckOTP()
-    if(isVerified){
+    e.preventDefault();
+    const isVerified = handleCheckOTP();
+    if (isVerified) {
       setTimeout(() => {
-        setIsOTPVerified(true)
-        setModalStatus(false)
-        setStep(3)
-      }, 1500)
+        setIsOTPVerified(true);
+        setModalStatus(false);
+        setStep(3);
+      }, 1500);
     }
   };
-  
+
   const buttonData = {
     Cancel: {
       text: "Cancel",
@@ -168,7 +131,8 @@ const ModalOtp = ({
       textColor: "var(--pc)",
       width: "100%",
       border: "solid .1rem var(--lc)",
-      className: "cancel-bt"
+      className: "cancel-bt",
+      onClick: handleCancelButton,
     },
     Verify: {
       text: "Veryfy",
@@ -177,10 +141,10 @@ const ModalOtp = ({
       width: "100%",
       type: "submit",
       border: "none",
-      className: null
+      className: null,
+      onClick: null
     },
   };
-
 
   // Showing the user number in the following way (***)***-****
   const cleanedNumber = phoneNumber.replace(/\D/g, "");
@@ -203,7 +167,11 @@ const ModalOtp = ({
           </p>
         </div>
         <div className="otp-icon">
-          {VerifiedOTP ? <VerifiedPhoneIcon /> : <OtpIcon color={otpStatusColor} /> }
+          {VerifiedOTP ? (
+            <VerifiedPhoneIcon />
+          ) : (
+            <OtpIcon color={otpStatusColor} />
+          )}
         </div>
         <form className="otp-container-form" onSubmit={handleVerified}>
           <div className="otp-input-content">
@@ -219,9 +187,9 @@ const ModalOtp = ({
             ))}
           </div>
           <div className="otp-resend-code">
-
-
-            {otpError &&  <ErrorMessages text={errorMessages.text} setOtpError={setOtpError} />}
+            {otpError && (
+              <ErrorNotices text={errorMessages.text} status={setOtpError} />
+            )}
             <div className="gtp-code">
               <span>Didn't get it? </span>
               <button
@@ -237,30 +205,13 @@ const ModalOtp = ({
                 key={restartKey}
                 initialSeconds={120}
                 onTimerEnd={handleTimerEnd}
-
                 resetModal={resetOtpFields}
               />
             </div>
           </div>
           <div className="otp-btns">
-            <CustomButton
-              text="Cancel"
-              background="white"
-              textColor="var(--pc)"
-              width="100%"
-              border="solid .1rem var(--lc)"
-              onClick={handleCancelButton}
-              className="cancel-bt"
-            />
-            <CustomButton
-              text="Veryfy"
-              background="var(--pc)"
-              textColor="white"
-              width="100%"
-              type="submit"
-              className={verify.className}
-            />
-            {/* {handleButtonState(approvedOTP)} */}
+            <Button buttonData={cancel} />
+            <Button buttonData={verify} />
           </div>
         </form>
       </div>
@@ -269,9 +220,9 @@ const ModalOtp = ({
   );
 };
 
-// ModalOtp.propTypes = {
-//   phoneNumber: PropTypes.string.isRequired,
-//   setShowModal: PropTypes.func.isRequired
-// }
+ModalOtp.propTypes = {
+  phoneNumber: PropTypes.string.isRequired,
+  setShowModal: PropTypes.func.isRequired
+}
 
 export default ModalOtp;

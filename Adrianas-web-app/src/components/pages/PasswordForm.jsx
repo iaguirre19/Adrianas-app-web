@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/inputStyles.css";
 import '../../styles/passwordFormStyle.css'
 
@@ -13,15 +13,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../action/button/CustomButton";
+import ErrorNotices from "../reusableComponents/ErrorNotices";
 import FormHeader from "../reusableComponents/FormHeader";
 import PropTypes from "prop-types";
 
-const PasswordForm = ({ dataHeader, setStep }) => {
+const PasswordForm = ({ 
+  dataHeader,
+  setStep, 
+  setCurrentStepBar 
+}) => {
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     repeatPassword: "",
   });
+
+  useEffect(() => {
+    setCurrentStepBar(2)
+  }, [])
 
   // Password validation
   const [isTyping, setIsTyping] = useState(false);
@@ -51,7 +61,6 @@ const PasswordForm = ({ dataHeader, setStep }) => {
       setIsTyping(true);
     } else if (name === "repeatPassword") {
       setFormData({ ...formData, [name]: value });
-      // setRepeatPassword(value);
     }else if(name === "email"){
       setFormData({ ...formData, [name]: value });
     }
@@ -61,22 +70,48 @@ const PasswordForm = ({ dataHeader, setStep }) => {
     setShowPassword(!showPassword);
   };
 
+  const [statusError, setStatusError] = useState(false);
+  const [textError, setTextError] = useState("");
+  const [errorMessages, setErrorMessages] = useState([
+    {
+      mismatchPassword: {
+        text: "The password doesn't match, please try again.",
+      },
+      missingFields: {
+        text: "Please fill out all the inputs.",
+      },
+    },
+  ]);
+
+  const [
+    {
+      mismatchPassword: { text: mismatchPasswordErrorMessage },
+      missingFields: { text: missingFieldsErrorMessages },
+    },
+  ] = errorMessages;
+
+
   const handleCheck = () => {
 
-
-    console.log(formData)
     let validationPassed = true
 
     const isAnyFieldEmpty = Object.values(formData).some(
       (value) => value === ""
     );
 
+
     if(isAnyFieldEmpty){
+      setStatusError(true)
+      setTextError(missingFieldsErrorMessages);
       return validationPassed = false
-    }else{
-      validationPassed = true
     }
 
+    
+    if(formData.password !== formData.repeatPassword){
+      setStatusError(true)
+      setTextError(mismatchPasswordErrorMessage);
+      return validationPassed = false
+    }
 
 
     return validationPassed
@@ -259,11 +294,11 @@ const PasswordForm = ({ dataHeader, setStep }) => {
                 )) : "-"} Password
               should have at least one special character
             </span>
-            {/* <div className="error-container">
+            <div className="error-container">
               {statusError && (
                 <ErrorNotices text={textError} status={setStatusError} />
               )}
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="btn-container">

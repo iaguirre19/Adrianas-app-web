@@ -1,20 +1,23 @@
 import { useState } from "react";
 
-import FileIcon from "../icons/fileIcon/FileIcon";
-import MailIcon from "../icons/mailicon/MailIcon";
-import PhoneIcon from "../icons/phoneicon/PhoneIcon";
-import UserIcon from "../icons/userIcon/UserIcon";
-import CustomButton from "../action/button/Button";
-import AgreTest from "../action/agreementCheckBox/CheckBoxAgree";
-import FormHeader from '../reusableComponents/FormHeader'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faUser,
+  faPhone,
+  faEnvelope,
+  faFile,
+} from "@fortawesome/free-solid-svg-icons";
+
+import CheckBoxAgree from "../action/agreementCheckBox/CheckBoxAgree";
+import FormHeader from "../reusableComponents/FormHeader";
 import ErrorNotices from "../reusableComponents/ErrorNotices";
+import Button from "../action/button/CustomButton";
 
 import "../../styles/signUpStyles.css";
 import "../../styles/header-title.css";
 import "../../styles/checkbox.css";
 import "../../styles/button.css";
-import ErrorMessages from "../reusableComponents/ErrorComponent";
-
 
 const validate = (isChecked) => {
   return isChecked;
@@ -25,7 +28,6 @@ const CreateAnAccountFormTs = ({
   setModalStatus,
   registrationData,
   setRegistrationData,
-  setStep
 }) => {
   // Button data
   const createAnAccountDataBtn = {
@@ -35,6 +37,17 @@ const CreateAnAccountFormTs = ({
     textColor: "white",
   };
 
+  // Button Style
+
+  const passwordDataBtn = {
+    text: "Create An Account",
+    width: "100%",
+    background: "--pc",
+    textColor: "white",
+    type: "submit",
+    border: "none",
+    className: "btn-password-form",
+  };
 
   // checkbox function
   const [isChecked, setIsChecked] = useState(true);
@@ -42,21 +55,6 @@ const CreateAnAccountFormTs = ({
     setIsChecked(!isChecked);
   };
 
-  // const [signUpInput, setSignUpInput] = useState({
-  //   name: "Harry Styles",
-  //   phoneNumber: "7772562179",
-  //   email: "carrors.locos@gmail.com",
-  //   policyNumber: "857976231023",
-  // });
-  // const [signUpInput, setSignUpInput] = useState({
-  //   name: "",
-  //   phoneNumber: "",
-  //   email: "",
-  //   policyNumber: "",
-  // });
-
-  // submit
-  
   const handleChange = (event) => {
     // This code stores in a variable the type of input that we are currently typing. Taking in the first variable the name of the input.Then, In the second one, It is storing the value of this input.
     const { name, value } = event.target;
@@ -76,10 +74,9 @@ const CreateAnAccountFormTs = ({
     }));
   };
 
+  const [errorStatus, setErrorStatus] = useState(false);
+  const [message, setMessages] = useState("");
 
-  const [errorStatus, setErrorStatus] = useState(false)
-  const [message, setMessages] = useState("") 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, phoneNumber, email, policyNumber } = registrationData;
@@ -90,30 +87,28 @@ const CreateAnAccountFormTs = ({
       !email.trim() ||
       !policyNumber.trim()
     ) {
-      setErrorStatus(true)
-      setMessages("Some fields are missing. Please complete all required information.")
+      setErrorStatus(true);
+      setMessages(
+        "Some fields are missing. Please complete all required information."
+      );
     }
 
     if (validate(isChecked)) {
-      setModalStatus(true)
-      setStep(2)
+      setModalStatus(true);
     } else {
-      // ===============================================work here ================
       setErrorStatus(true);
-      setMessages("Please accept the terms and conditions to proceed")
+      setMessages("Please accept the terms and conditions to proceed");
     }
-
 
     const objectForm = {
       name,
       phoneNumber,
       email,
-      policyNumber
-    }
+      policyNumber,
+    };
 
-    setRegistrationData(objectForm)
+    setRegistrationData(objectForm);
   };
-
 
   // Inputs Formats
   const formatPolicyNumber = (value) => {
@@ -134,7 +129,7 @@ const CreateAnAccountFormTs = ({
           </div>
           <div className="input-inp">
             <div className="icon-content">
-              <UserIcon />
+              <FontAwesomeIcon icon={faUser} className="icon" />
             </div>
             <input
               className="input-data"
@@ -153,7 +148,7 @@ const CreateAnAccountFormTs = ({
           </div>
           <div className="input-inp">
             <div className="icon-content">
-              <PhoneIcon />
+              <FontAwesomeIcon icon={faPhone} className="icon" />
             </div>
             <input
               className="input-data"
@@ -172,7 +167,7 @@ const CreateAnAccountFormTs = ({
           </div>
           <div className="input-inp">
             <div className="icon-content">
-              <MailIcon />
+              <FontAwesomeIcon icon={faEnvelope} className="icon" />
             </div>
             <input
               className="input-data"
@@ -191,7 +186,7 @@ const CreateAnAccountFormTs = ({
           </div>
           <div className="input-inp">
             <div className="icon-content">
-              <FileIcon />
+              <FontAwesomeIcon icon={faFile} className="icon" />
             </div>
             <input
               className="input-data"
@@ -204,23 +199,17 @@ const CreateAnAccountFormTs = ({
             />
           </div>
         </div>
-        <AgreTest
+        <CheckBoxAgree
           isChecked={isChecked}
           setIsChecked={setIsChecked}
           handleBoxChange={handleBoxChange}
         />
         <div className="signup-error-messages">
-          {errorStatus && <ErrorNotices text={message} status={setErrorStatus} />}
+          {errorStatus && (
+            <ErrorNotices text={message} status={setErrorStatus} />
+          )}
         </div>
-
-        <CustomButton
-          text={createAnAccountDataBtn.text}
-          width={createAnAccountDataBtn.width}
-          background={createAnAccountDataBtn.background}
-          textColor={createAnAccountDataBtn.textColor}
-          type="submit"
-          border="none"
-        />
+        <Button buttonData={passwordDataBtn} />
       </form>
     </div>
   );

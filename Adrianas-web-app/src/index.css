@@ -51,8 +51,7 @@ body{
     background-color: white;
     height: 100dvh;
     overflow:hidden ;
-    display: grid;
-    place-content: center;
+    margin: 0 auto;
 }
 
 .z-bottom{
@@ -69,4 +68,8 @@ body{
 }
 .active-error{
     color: var(--ec);
+}
+.icon{
+    font-size: 1.4rem;
+    color: var(--ic);
 }

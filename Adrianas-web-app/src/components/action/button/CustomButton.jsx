@@ -1,12 +1,12 @@
 const Button = ({buttonData}) => {
-  
+
     const {text, width, background, textColor, type, border, className, onClick} = buttonData
 
-    
+
     const buttonStyle = {
         width,
         background,
-        textColor,
+        color: textColor,
         border
     };
 

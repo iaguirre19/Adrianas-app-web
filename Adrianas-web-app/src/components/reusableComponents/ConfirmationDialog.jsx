@@ -1,7 +1,8 @@
 import checkConfirmatioIcon from '../../assets/images/check.png'
-import CustomButton from '../action/button/Button'
+// import CustomButton from '../action/button/Button'
 import '../../styles/confirmationDialog.css'
-const ConfirmationDialog = ({title, content,spanContent, btnText, onClick}) => {
+import Button from '../action/button/CustomButton'
+const ConfirmationDialog = ({title, content,spanContent}) => {
     
 
     const buttonStyle = {
@@ -12,7 +13,7 @@ const ConfirmationDialog = ({title, content,spanContent, btnText, onClick}) => {
         type: "text",
         border: "none",
         className: "btn-confirmation",
-        onClick
+        onClick: null
 
     }
     
@@ -28,17 +29,7 @@ const ConfirmationDialog = ({title, content,spanContent, btnText, onClick}) => {
                     <p className='confirmation-content-text'>{content} <span>{spanContent}</span></p>
                 </div>
             </div>
-            <CustomButton 
-                className={buttonStyle.className}
-                text={buttonStyle.text}
-                width={buttonStyle.with}
-                background={buttonStyle.background}
-                textColor={buttonStyle.textColor}
-                type={buttonStyle.type}
-                border={buttonStyle.border}
-
-
-            />
+            <Button buttonData={buttonStyle} />
         </div>
     )
 }

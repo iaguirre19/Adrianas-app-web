@@ -112,6 +112,13 @@
     color: var(--ec);
     opacity: .7;
 }
+.otp-resend-code{
+    position: relative;
+}
+.otp-resend-code .error-notices{
+    position: absolute;
+    bottom: -2.6rem;
+}
 
 .otp-resend-code span{
     font-size: var(--tnf);
