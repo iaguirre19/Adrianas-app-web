@@ -1,16 +1,32 @@
-.header-container{
+.header-login-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+.header-loginup-container{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 3rem;
 }
-.header-login-text p{
+.header-login-container .header-logText-container{
+    display: none;
+}
+.header-loginup-container .header-logText-container{
+    display: block;
+}
+.header-logText-container{
     font-size: 1.4rem;
+}
+.header-loginup-text{
     font-family: var(--font-t);
 }
-.header-login-text a{
+.header-loginup-text a{
     padding-left: 8px;
     color: var(--pc);
     font-weight: 500;
 }
+

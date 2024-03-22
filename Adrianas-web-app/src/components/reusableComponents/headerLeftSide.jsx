@@ -1,22 +1,35 @@
 // import React from 'react';
-import adrianaslogo from '../../assets/images/adrianas-logo.svg'
-import '../../styles/header-left-side.css'
+import { useEffect, useState } from "react";
+import adrianaslogo from "../../assets/images/adrianas-logo.svg";
+import "../../styles/header-left-side.css";
 
-const HeaderLeftSide = () => {
-    const textLink =  "Already have an account?"
-    const linkLogin = "Login"
+const HeaderLeftSide = ({ authMode }) => {
+  const [authClass, setAuthClass] = useState("");
 
-    return (
-        <div className='header-container'>
-            <div className='header-logo'>
-                <img src={adrianaslogo} alt="Adrianas Insurance Logo" />
-            </div>
-            <div className='header-login-text'>
-                <p>{textLink} <a>{linkLogin}</a></p>
-            </div>
-        </div>
-    );
+  useEffect(() => {
+    if (authMode === "signin") {
+      setAuthClass("header-login-container");
+    } else {
+      setAuthClass("header-loginup-container");
+    }
+  }, [authMode]);
+
+  const textLink = "Already have an account?";
+  const linkLogin = "Login";
+
+  return (
+    <div className={authClass}>
+      <div className="header-logo">
+        <img src={adrianaslogo} alt="Adrianas Insurance Logo" />
+      </div>
+      <div className="header-logText-container">
+        <p className="header-loginup-text">
+          {textLink} <a>{linkLogin}</a>
+        </p>
+      </div>
+    </div>
+  );
 };
 
-
 export default HeaderLeftSide;
+

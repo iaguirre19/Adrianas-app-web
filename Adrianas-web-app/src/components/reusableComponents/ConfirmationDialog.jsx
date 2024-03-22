@@ -2,8 +2,13 @@ import checkConfirmatioIcon from '../../assets/images/check.png'
 // import CustomButton from '../action/button/Button'
 import '../../styles/confirmationDialog.css'
 import Button from '../action/button/CustomButton'
-const ConfirmationDialog = ({title, content,spanContent}) => {
+const ConfirmationDialog = ({title, content,spanContent,setAuthMode, setStep}) => {
     
+    const handleGoLogin = (e) => {
+        e.preventDefault()
+        setStep(1)
+        setAuthMode('signin')
+    }
 
     const buttonStyle = {
         text: "Back to Login",
@@ -13,7 +18,7 @@ const ConfirmationDialog = ({title, content,spanContent}) => {
         type: "text",
         border: "none",
         className: "btn-confirmation",
-        onClick: null
+        onClick: handleGoLogin
 
     }
     

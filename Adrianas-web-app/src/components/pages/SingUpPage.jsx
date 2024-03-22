@@ -29,14 +29,6 @@ const CreateAnAccountFormTs = ({
   registrationData,
   setRegistrationData,
 }) => {
-  // Button data
-  const createAnAccountDataBtn = {
-    text: "Create An Account",
-    width: "100%",
-    background: "--pc",
-    textColor: "white",
-  };
-
   // Button Style
 
   const passwordDataBtn = {

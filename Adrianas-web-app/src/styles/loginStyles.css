@@ -1,0 +1,80 @@
+.login-container{
+    height: 70%;
+    width: 78%;
+    margin: 0 auto;
+}
+.login-container{
+    display: grid;
+    grid-template-rows: 25% auto 16%;
+    align-items: center;
+    row-gap: 2.4rem;
+}
+.title-login{
+    align-self: flex-end;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: .8rem;
+}
+.title-login h2{
+    color: var(--pc);
+    font-size: var(--tf);
+    font-family: var(--font-t);
+    font-weight: 400;
+}
+.title-login p{
+    color: var(--subtc);
+    font-size: var(--tnf);
+    font-weight: 400;
+}
+.login-form-container{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 1.2rem;
+}
+.input-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.2rem;
+    padding-top: .8rem;
+}
+.remember-forgot-content{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+.remember-me{
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
+}
+.forgot-password{
+    font-size: 1.2rem;
+    color: var(--pc);
+}
+.btn-login{
+    margin-top: 2rem;
+}
+.create-account-container{
+    align-self: flex-start;
+    justify-self: center;
+    font-size: var(--tnf);
+    color: var(--subtc);
+    font-weight: 400;
+}
+
+.create-account-container a{
+    color: var(--pc);
+    
+}
+.error-container-login{
+    position: relative;
+}
+.error-notices{
+    position: absolute;
+    font-size: var(--tnf);
+}

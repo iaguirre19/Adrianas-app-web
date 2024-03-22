@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CustomerReview from "./components/reusableComponents/customerReview";
-import HeaderInput from "./components/reusableComponents/headerLeftSide";
+import HeaderLeftSide from "./components/reusableComponents/headerLeftSide";
 import StatusBar from "./components/reusableComponents/progressBar";
 import SignUpPage from "./components/pages/SingUpPage";
 import OtpModal from "./components/modals/OtpModal";
@@ -30,7 +30,19 @@ const Apps = () => {
   const [currentStepBar, setCurrentStepBar] = useState(1);
   const [codeOTP, setCodeOTP] = useState(["2", "6", "4", "2", "3"]);
   const [isOTPVerified, setIsOTPVerified] = useState(false);
-  const [authMode, setAuthMode] = useState('signup');
+  const [authMode, setAuthMode] = useState('signin');
+  const [containerClassName, setContainerClassName] = useState("");
+
+  useEffect(() => {
+    const classMap = {
+      signin: 'signin-container',
+      signup: 'signup-container'
+    }
+
+    setContainerClassName(classMap[authMode] || "")
+
+  }, [authMode])
+
 
   const headerFormData = [
     {
@@ -57,36 +69,25 @@ const Apps = () => {
           setStep={setStep}
         />
       )}
-      <div className="signin-page signin-container">
+      <div className={containerClassName}>
         <div className="left-side">
-          <HeaderInput />
+          <HeaderLeftSide authMode={authMode} />
 
-
-        {authMode === 'signin' ? <LoginComponent /> : (step === 1 && (
-            <SignUpPage
-              dataHeader={headerFormData[0]}
-              setModalStatus={setModalStatus}
-              setStep={setStep}
-              codeOTP={codeOTP}
-              setCodeOTP={setCodeOTP}
-              registrationData={registrationData}
-              setRegistrationData={setRegistrationData}
-            />
-          ))}
-
-
-
-          {/* {step === 1 && (
-            <SignUpPage
-              dataHeader={headerFormData[0]}
-              setModalStatus={setModalStatus}
-              setStep={setStep}
-              codeOTP={codeOTP}
-              setCodeOTP={setCodeOTP}
-              registrationData={registrationData}
-              setRegistrationData={setRegistrationData}
-            />
-          )} */}
+          {authMode === "signin" ? (
+            <LoginComponent setAuthMode={setAuthMode}/>
+          ) : (
+            step === 1 && (
+              <SignUpPage
+                dataHeader={headerFormData[0]}
+                setModalStatus={setModalStatus}
+                setStep={setStep}
+                codeOTP={codeOTP}
+                setCodeOTP={setCodeOTP}
+                registrationData={registrationData}
+                setRegistrationData={setRegistrationData}
+              />
+            )
+          )}
           {step === 3 && (
             <PasswordForm
               dataHeader={headerFormData[1]}
@@ -99,10 +100,12 @@ const Apps = () => {
               title="Congratulations!"
               content="Your account has been successfully created."
               spanContent="Welcome aboard!"
+              setAuthMode={setAuthMode}
+              setStep={setStep}
             />
           )}
 
-          <StatusBar currentPage={currentStepBar} />
+          {authMode === "signup" && <StatusBar currentPage={currentStepBar} />}
         </div>
         <div className="right-side">
           <CustomerReview customerInfo={firstUser} />

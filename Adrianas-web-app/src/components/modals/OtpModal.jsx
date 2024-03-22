@@ -222,7 +222,7 @@ const ModalOtp = ({
 
 ModalOtp.propTypes = {
   phoneNumber: PropTypes.string.isRequired,
-  setShowModal: PropTypes.func.isRequired
+  setModalStatus: PropTypes.func.isRequired
 }
 
 export default ModalOtp;
