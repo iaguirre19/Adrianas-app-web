@@ -6,8 +6,9 @@ import SignUpPage from "./components/pages/SingUpPage";
 import OtpModal from "./components/modals/OtpModal";
 import PasswordForm from "./components/pages/PasswordForm";
 import ConfirmationDialog from "./components/reusableComponents/ConfirmationDialog";
-import "./App.css";
 import LoginComponent from "./components/pages/Login";
+import ForgotPassword from "./components/pages/ForgotPassword";
+import "./App.css";
 
 const Apps = () => {
   const [customerData, setCustomerData] = useState({
@@ -30,13 +31,14 @@ const Apps = () => {
   const [currentStepBar, setCurrentStepBar] = useState(1);
   const [codeOTP, setCodeOTP] = useState(["2", "6", "4", "2", "3"]);
   const [isOTPVerified, setIsOTPVerified] = useState(false);
-  const [authMode, setAuthMode] = useState('signin');
+  const [authMode, setAuthMode] = useState('forgotPassword');
   const [containerClassName, setContainerClassName] = useState("");
 
   useEffect(() => {
     const classMap = {
       signin: 'signin-container',
-      signup: 'signup-container'
+      signup: 'signup-container',
+      forgotPassword: 'forgot-password'
     }
 
     setContainerClassName(classMap[authMode] || "")
@@ -72,8 +74,7 @@ const Apps = () => {
       <div className={containerClassName}>
         <div className="left-side">
           <HeaderLeftSide authMode={authMode} />
-
-          {authMode === "signin" ? (
+          {authMode === 'forgotPassword' ? <ForgotPassword /> :(authMode === "signin" ? (
             <LoginComponent setAuthMode={setAuthMode}/>
           ) : (
             step === 1 && (
@@ -87,7 +88,7 @@ const Apps = () => {
                 setRegistrationData={setRegistrationData}
               />
             )
-          )}
+          ))}
           {step === 3 && (
             <PasswordForm
               dataHeader={headerFormData[1]}

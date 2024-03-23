@@ -4,6 +4,8 @@
   display: grid;
   place-content: center;
 }
+
+.forgot-password,
 .signin-container,
 .signup-container{
   width: 90dvw;
@@ -13,11 +15,13 @@
   min-height: 760px;
   position: relative;
 }
+.forgot-password,
 .signin-container,
 .signup-container{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+.forgot-password .left-side,
 .signin-container .left-side,
 .signup-container .left-side{
   width: 100%;
@@ -25,7 +29,7 @@
   padding: .2rem 4.4rem;
   
 }
-
+.forgot-password .left-side,
 .signin-container .left-side,
 .signup-container .left-side{
   display: flex;
@@ -34,8 +38,7 @@
 }
 
 .signin-container .left-side{
-  justify-content: center;
-  
+  justify-content: center;  
 }
 
 .right-side{
@@ -48,6 +51,7 @@
 
 @media (max-width: 800px) {
   /* … */
+  .forgot-password,
   .signin-container{
     display: grid;
     grid-template-columns: auto;

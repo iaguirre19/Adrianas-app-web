@@ -13,3 +13,10 @@
 .show-password:hover{
     color: var(--ich);
 }
+.input-data{
+    border: solid .1rem var(--lc);
+    border-radius: .8rem;
+    padding: 1.6rem 1.2rem 1.6rem 4.4rem;
+    width: 100%;
+    font-size: var(--phf);
+}
