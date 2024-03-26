@@ -3,6 +3,7 @@
     --sc: #D23736; /*secondary color*/
     --ec: #FF3333; /*secondary color*/
     --ic: #909090; /*Icon color*/
+    --ic-2:#BBBBBB;
     --ich: #000000;
     --vc: #33cc33;
     --bc:hsl(0, 0%, 86%); 
@@ -24,7 +25,9 @@
     --tnf: 1.4rem;
     --trc: 1.6rem;
     --phf: 1.4rem;
+    --ifs: 2.2rem;
     --lf: 1.2rem;
+    --tpt: 1.6rem;
 
     /* Box shadowns */
 
@@ -75,4 +78,13 @@ body{
 }
 a{
     text-decoration: none;
+}
+.svg-inline--fa{
+    font-size: var(--ifs);
+}
+.profile-img{
+    width: 4.8rem;
+    height:4.8rem;
+    border-radius: 1rem;
+    object-fit: fill;
 }

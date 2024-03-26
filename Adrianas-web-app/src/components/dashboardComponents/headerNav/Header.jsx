@@ -1,13 +1,19 @@
 import AdrianasLogo from '../../../assets/images/adrianas-logo.svg'
+import profilePicture from '../../../assets/images/profile-picture.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBell,
-    faArrowDown
+    faChevronDown
 
 } from "@fortawesome/free-solid-svg-icons";
-import './HeaderStyles.css'
+import '../../../styles/dashboard-styles/HeaderStyles.css'
+import { useState } from 'react';
 
 const Header = () => {
+    // const {name, lastName, picture, notifications} = userData;
+    const [counterNotifications, setCounterNotificationes] = useState("1")
+    
+
     return(
         <div className='header-container'>
             <div className="header-content">
@@ -19,14 +25,16 @@ const Header = () => {
                         <div className="notification-icon-content">
                             <FontAwesomeIcon icon={faBell} />
                             <div className="notifications-count">
-                                1
+                                <span className='counter'>{counterNotifications}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="separation-line"></div>
+                    <div className="separation-line-container">
+                        <div className="line"></div>
+                    </div>
                     <div className="user-data-content">
                         <div className="profile-picture">
-                             <img src="" alt="profile picture" />
+                             <img className='profile-img' src={profilePicture} alt="profile picture" />
                         </div>
                         <div className='user-data'>
                             <h3>Melissa</h3>
@@ -35,7 +43,7 @@ const Header = () => {
                     </div>
                     <div className="arrow-icon-content">
                         <div className="arrow-icon">
-                            <FontAwesomeIcon icon={faArrowDown} />
+                        <FontAwesomeIcon icon={faChevronDown} />
                         </div>
                         <div className="user-settings-modal">
                             <ul>
