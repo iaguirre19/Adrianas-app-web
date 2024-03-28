@@ -1,0 +1,140 @@
+.notification-container {
+    position: absolute;
+    width: 44rem;
+    height: auto;
+    right: -2rem;
+    top: 4rem;
+    border-radius: var(--bbn);
+    z-index: -1;
+    opacity: 1;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    background-color: white;
+}
+.notification-container.openNotiModal{
+    visibility: visible;
+    opacity: 1;
+    z-index: 50;
+    transition-delay:0s;
+}
+
+.notification-container {
+    box-shadow: var(--card-shadown);
+}
+
+.notification-content {
+    width: 100%;
+    height: 100%;
+    padding: 2rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.4rem;
+}
+
+.title-icon-close {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.fa-xmark{
+    cursor: pointer;
+}
+.title-icon-close h3 {
+    font-size: var(--mtf);
+    font-family: var(--font-t);
+}
+
+.notification-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 1.4rem;
+
+}
+
+.section-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.4rem;
+}
+
+.section-data span {
+    cursor: pointer;
+}
+
+.line-content {
+    height: auto;
+    position: relative;
+}
+
+.section-line {
+    width: 50%;
+    height: .2rem;
+    display: inline-block;
+    border-radius: .8rem;
+    transition: .2s ease;
+}
+
+.selected {
+    background-color: blue;
+    height: .4rem;
+}
+
+.notSelected {
+    background-color: transparent;
+}
+
+.notification-content-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-between;
+    row-gap: 1.4rem;
+}
+.notification-content-message .notification{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .8rem .8rem;
+    cursor: pointer;
+}
+.notification:hover{
+    background-color: aliceblue;
+}
+.left-icon .icon{
+    font-size: 2rem;
+    color: var(--icm);
+}
+.notification-data{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    row-gap: .6rem;
+    font-size: 1.4rem;
+}
+.notification-title{
+    display: flex;
+    flex-direction:column;
+    row-gap: .6rem;
+}
+.notification-title h4{
+    font-weight: 500;
+    font-family: var(--font-t);
+}
+.notification-title p{
+    text-align: start;
+}
+.notification-check-icon{
+    align-self: start;
+}
+.notification-check-icon .icon{
+    color: var(--icm);
+    font-size: 1.2rem;
+}

@@ -17,24 +17,28 @@
     width: 12rem;
 }
 .header-user-info-panel{
-    width: 74%;
+    width: auto;
     justify-self: flex-end;
 }
 .header-user-info-panel{
     grid-column: 5/8;
     display: grid;
-    grid-template-columns: 5% 5% auto 5%;
+    grid-template-columns: auto auto auto auto;
     align-items: center;
     justify-items: center;
     column-gap: 2rem;
     padding: 0 .8rem;
 }
-
 .notifications-icon{
     position: relative;
 }
 .fa-bell{
     color: var(--ic);
+    cursor: pointer;
+    transition: color  0.3s ease-in-out;
+}
+.fa-bell:hover{
+    color: var(--pc);
 }
 .notifications-count{
     position: absolute;
@@ -89,18 +93,63 @@
     color: var(--subtc);
     font-size: var(--tnf);
 }
-.fa-chevron-down{
+.settings-arrow-modal{
     color: var(--ic);
     font-size: 2rem;
+    cursor: pointer;
+}
+.settings-arrow-modal:hover{
+    color: var(--pc);
 }
 .arrow-icon-content{
     position: relative;
 }
 .user-settings-modal{
-    background-color: antiquewhite;
-    width: 14rem;
-    height: 14rem;
+    width: auto;
+    height: auto;
     position: absolute;
-    left: -10rem;
-    top: 4rem;
+    left: -22rem;
+    top: 4.4rem;
+    border-radius: var(--bbn);
+    padding: 1.8rem 1.4rem;
+    box-shadow: var(--card-shadown);
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+    background-color: white;
+}
+.user-settings-modal.openModal{
+    visibility: visible;
+    opacity: 1;
+    z-index: 50;
+    transition-delay: 0s;
+}
+.user-settings-content:nth-child(1){
+    margin-top: 0;
+    background-color: transparent;
+}
+.user-settings-content{
+    display: grid;
+    grid-template-columns: 20% 70%;
+    align-items: center;
+    justify-items: center;
+    column-gap: 1rem;
+    padding: 1.2rem 1.6rem 1.2rem .2rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border-radius: .6rem;
+}
+.user-settings-content:hover {
+    background-color: var(--pc);
+    color: white; 
+}
+.user-settings-link{
+    justify-self: start;
+    width: 16rem;
+    font-size: var(--tnf);
+}
+.icons
+.icons-settings{
+    font-size: 1.6rem;
 }

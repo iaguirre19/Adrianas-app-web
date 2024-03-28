@@ -8,10 +8,13 @@
     --vc: #33cc33;
     --bc:hsl(0, 0%, 86%); 
     --tcw:#ffffff;  /*Text color wite*/
+    --cpc:#ffffff;  /*Card panel color wite*/
     --tcr:#DBDBDB; /*text color */
     --subtc:#999999; /* subtitle color*/
     --lc:  #A2A2A2; /*Line color*/
-    --hbb: #1F4A6D; 
+    --hbb: #1F4A6D; /*Hover btn */
+    --icm: #5131f3; /*icon color modal*/
+    --icma: #ffc412; /*icon color modal alert*/
     
 
     /* Font family */
@@ -21,17 +24,23 @@
 
     /* Font size */
     --tf: 3rem;
-    --stf: 1.6rem;
+    --mtf: 2.2rem;
+    --stf: 1.6rem; /*subtitle text font*/
     --tnf: 1.4rem;
     --trc: 1.6rem;
     --phf: 1.4rem;
     --ifs: 2.2rem;
     --lf: 1.2rem;
-    --tpt: 1.6rem;
+    --tpt: 1.6rem; 
+    --tm: 1.6rem; /*Menu text*/
 
     /* Box shadowns */
 
     --bnt-shadown: 0 2px 6px rgba(0, 0, 0, 0.2);
+    --card-shadown: 0 8px 24px 0px rgba(0, 0, 0, 0.25);
+
+    /* Box borders */
+    --bbn: .8rem;
   
 }
 
@@ -51,7 +60,7 @@ body{
 }
 
 #root{
-    background-color: white;
+    background-color: #EBEBEB;
     height: 100dvh;
     overflow:hidden ;
     margin: 0 auto;
@@ -86,5 +95,8 @@ a{
     width: 4.8rem;
     height:4.8rem;
     border-radius: 1rem;
-    object-fit: fill;
+    object-fit: cover;
+}
+li{
+    list-style: none;
 }
