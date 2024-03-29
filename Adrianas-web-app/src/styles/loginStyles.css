@@ -1,3 +1,4 @@
+
 .login-container{
     height: 70%;
     width: 78%;
@@ -52,7 +53,7 @@
     align-items: center;
     column-gap: .8rem;
 }
-.forgot-password{
+.login-forgot-password{
     font-size: 1.2rem;
     color: var(--pc);
 }

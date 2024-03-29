@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRoutes, BrowserRouter } from "react-router-dom";
 import CustomerReview from "./components/reusableComponents/customerReview";
 import HeaderLeftSide from "./components/reusableComponents/headerLeftSide";
 import StatusBar from "./components/reusableComponents/progressBar";
@@ -8,9 +9,19 @@ import PasswordForm from "./components/pages/PasswordForm";
 import ConfirmationDialog from "./components/reusableComponents/ConfirmationDialog";
 import LoginComponent from "./components/pages/Login";
 import ForgotPassword from "./components/pages/ForgotPassword";
+import Dashboard from './components/pages/Dashboard';
+import AppRoutes from "./router/AppRoutes";
+
 import "./App.css";
 
+
+
+
+
+
 const Apps = () => {
+  
+
   const [customerData, setCustomerData] = useState({
     firstUser: {
       review:
@@ -31,20 +42,18 @@ const Apps = () => {
   const [currentStepBar, setCurrentStepBar] = useState(1);
   const [codeOTP, setCodeOTP] = useState(["2", "6", "4", "2", "3"]);
   const [isOTPVerified, setIsOTPVerified] = useState(false);
-  const [authMode, setAuthMode] = useState('forgotPassword');
+  const [authMode, setAuthMode] = useState("signin");
   const [containerClassName, setContainerClassName] = useState("");
 
   useEffect(() => {
     const classMap = {
-      signin: 'signin-container',
-      signup: 'signup-container',
-      forgotPassword: 'forgot-password'
-    }
+      signin: "signin-container",
+      signup: "signup-container",
+      forgotPassword: "forgot-password",
+    };
 
-    setContainerClassName(classMap[authMode] || "")
-
-  }, [authMode])
-
+    setContainerClassName(classMap[authMode] || "");
+  }, [authMode]);
 
   const headerFormData = [
     {
@@ -61,6 +70,9 @@ const Apps = () => {
   const phoneNumber = registrationData.phoneNumber;
 
   return (
+
+    // <AppRoutes />
+    
     <div className="main-conatainer">
       {modalStatus && (
         <OtpModal
@@ -74,8 +86,10 @@ const Apps = () => {
       <div className={containerClassName}>
         <div className="left-side">
           <HeaderLeftSide authMode={authMode} />
-          {authMode === 'forgotPassword' ? <ForgotPassword /> :(authMode === "signin" ? (
-            <LoginComponent setAuthMode={setAuthMode}/>
+          {authMode === "forgotPassword" ? (
+            <ForgotPassword />
+          ) : authMode === "signin" ? (
+            <LoginComponent setAuthMode={setAuthMode} />
           ) : (
             step === 1 && (
               <SignUpPage
@@ -88,7 +102,7 @@ const Apps = () => {
                 setRegistrationData={setRegistrationData}
               />
             )
-          ))}
+          )}
           {step === 3 && (
             <PasswordForm
               dataHeader={headerFormData[1]}
@@ -113,6 +127,7 @@ const Apps = () => {
         </div>
       </div>
     </div>
+  
   );
 };
 

@@ -29,7 +29,7 @@
     --tnf: 1.4rem;
     --trc: 1.6rem;
     --phf: 1.4rem;
-    --ifs: 2.2rem;
+    --ifs: 1.8rem;
     --lf: 1.2rem;
     --tpt: 1.6rem; 
     --tm: 1.6rem; /*Menu text*/
@@ -60,7 +60,7 @@ body{
 }
 
 #root{
-    background-color: #EBEBEB;
+    /* background-color: #EBEBEB; */
     height: 100dvh;
     overflow:hidden ;
     margin: 0 auto;

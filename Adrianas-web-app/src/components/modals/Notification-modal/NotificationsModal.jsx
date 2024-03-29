@@ -13,7 +13,7 @@ const NotificationModal = ({activeModal, setActiveModalNotification}) => {
   const [activeBar, setActiveBar] = useState(true);
 
   const handleLineClick = () => {
-    setActiveBar(!activeBar); // Cambiamos el estado opuesto al actual
+    setActiveBar(!activeBar); 
   };
   const titleNotificationsModal = "Notifications";
   const title = "Your last bill is overdue";
@@ -41,11 +41,9 @@ const NotificationModal = ({activeModal, setActiveModalNotification}) => {
           <div className="line-content">
             <div
               className={`section-line ${activeBar ? "selected" : "notSelected"}`}
-              onClick={handleLineClick}
             ></div>
             <div
               className={`section-line ${activeBar ? "notSelected" : "selected"}`}
-              onClick={handleLineClick}
             ></div>
           </div>
         </div>

@@ -79,3 +79,8 @@
 .panel-header-right p span{
     color: black;
 }
+.menu-line{
+    width: 25%;
+    height: .4rem;
+    background-color: aqua;
+}

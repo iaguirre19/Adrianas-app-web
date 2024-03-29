@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./InsightspanelStyles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,9 +12,27 @@ import {
 import PaymentDraw from "../payment-draw/PaymentDraw";
 import Button from "../../action/button/CustomButton";
 import PaymentHistoryTable from "../payments-history/PaymentsHistory";
+import NavMenu from "../navbar-menu/NavMenu";
 
 const UserPanles = () => {
   const panelMenuData = ["Account", "Profile", "Payment", "Messages"];
+  const menuData = [{
+    id: 'account',
+    name: 'Account'
+  },
+  {
+    id: 'profile',
+    name: 'Profile'
+  },
+  {
+    id: 'payment',
+    name: "Payment"
+  },
+  {
+    id: 'messages',
+    name: 'Messages'
+  }]
+  const [activeMenu, setActiveMenu] = useState(false);
 
   const onClickNextPayment = () => {
     console.log("Next payment button clicked");
@@ -87,26 +106,32 @@ const UserPanles = () => {
     personalInjury: "Medical assistance",
     roadside: "Emergencies on the road",
   };
+  const handleMenuOnClick = (e) => {
+    const menuSelected = e.target
+    console.log(menuSelected)
+  }
 
-  // Generar claves únicas para cada elemento del menú
-  const menuItemsWithKeys = panelMenuData.map((item) => ({
-    name: item,
-    key: uuidv4(),
-  }));
+  // const menuItemsWithKeys = panelMenuData.map((item) => ({
+  //   name: item,
+  //   key: uuidv4(),
+  // }));
 
   return (
     <section className="user-panel-container">
       <div className="user-panel-content">
         <div className="panel-menu">
-          <ul>
+          <NavMenu />
+          {/* <ul>
             {menuItemsWithKeys.map((item) => (
-              <li className="panel-menu-item" key={item.key}>
+              <li onClick={handleMenuOnClick} className="panel-menu-item" key={item.key}>
                 <span>{item.name}</span>
               </li>
             ))}
-          </ul>
+          </ul> */}
           <div className="line-menu">
-            <div className="line"></div>
+            {/* {panelMenuData.map((line) => (
+              <div key={uuidv4()} className={`menu-line ${activeMenu ? "menu-selected" : ""}`}></div>
+            ))} */}
           </div>
         </div>
         <div className="left-panel-items">

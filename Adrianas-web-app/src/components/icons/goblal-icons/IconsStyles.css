@@ -1,0 +1,7 @@
+.icon-properties{
+    color: var(--ic);
+    font-size: var(--ifs);
+}
+.icon-click{
+    cursor: pointer;
+}
