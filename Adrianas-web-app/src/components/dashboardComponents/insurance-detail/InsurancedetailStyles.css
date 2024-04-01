@@ -1,0 +1,27 @@
+
+.insurance-details-container{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr .1fr 1fr .1fr 1fr;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.insurance-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.6rem;
+}
+.insurance-section h4{
+    font-size: var(--tnf);
+    font-weight: 450;
+    color: var(--subtc-cards);
+}
+.insurance-value span{
+    font-size: var(--ivf);
+}
+
+

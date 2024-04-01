@@ -1,37 +1,43 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faFileInvoiceDollar,
-    faMoneyBillTransfer,
-    faCar,
-    faFileArrowDown,
-    faChevronRight,
-    faEnvelope,
-    faKey,
-    faEye,
-    faEyeSlash,
-  } from "@fortawesome/free-solid-svg-icons";
+  faFileInvoiceDollar,
+  faMoneyBillTransfer,
+  faCar,
+  faFileArrowDown,
+  faChevronRight,
+  faEnvelope,
+  faKey,
+  faEye,
+  faEyeSlash,
+  faWallet,
+  faCoins
+} from "@fortawesome/free-solid-svg-icons";
 
-import './IconsStyles.css'
+import "./IconsStyles.css";
 
-const Icons = ({type, classIcon, beat, onClick}) => {
-    const icons = {
-        envelopeIcon: faEnvelope,
-        fileIcon: faFileInvoiceDollar,
-        moneyBill: faMoneyBillTransfer,
-        carIcon: faCar,
-        downloadIcon: faFileArrowDown,
-        rightArrowIcon: faChevronRight, 
-        keyIcon: faKey,
-        eyeIcon: faEye,
-        eyeSlashIcon: faEyeSlash,
+const Icons = ({ type, classIcon, onClick }) => {
+  const icons = {
+    envelopeIcon: faEnvelope,
+    fileIcon: faFileInvoiceDollar,
+    moneyBill: faMoneyBillTransfer,
+    carIcon: faCar,
+    downloadIcon: faFileArrowDown,
+    rightArrowIcon: faChevronRight,
+    keyIcon: faKey,
+    eyeIcon: faEye,
+    eyeSlashIcon: faEyeSlash,   
+    walletIcon: faWallet,
+    coinIcon: faCoins
 
-    }
+  };
 
-    return(
-        <div >
-            <FontAwesomeIcon onClick={onClick} beat={beat} className={`icon-properties ${classIcon}`} icon={icons[type]} />
-        </div>
-    )
-}
+  return (
+    <FontAwesomeIcon
+      onClick={onClick}
+      className={`icon-properties ${classIcon}`}
+      icon={icons[type]}
+    />
+  );
+};
 
-export default Icons
+export default Icons;

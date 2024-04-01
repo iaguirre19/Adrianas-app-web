@@ -1,4 +1,5 @@
-const PaymentHistoryTable = ({ transactions, Font, arrowRight }) => {
+import Icons from "../../icons/goblal-icons/Icons";
+const PaymentHistoryTable = ({ transactions}) => {
   return (
     <div className="payment-history-table">
       <table>
@@ -18,10 +19,10 @@ const PaymentHistoryTable = ({ transactions, Font, arrowRight }) => {
               <td>{transaction.id}</td>
               <td>{transaction.paymentDate}</td>
               <td>{transaction.dueDate}</td>
-              <td>{transaction.amount}</td>
+              <td>{`$ ${transaction.amount}`}</td>
               <td>{transaction.status}</td>
               <td>
-                <Font className='icon' icon={arrowRight} />
+                <Icons type='rightArrowIcon' classIcon='right-arrow-icon' /> 
               </td>
             </tr>
           ))}

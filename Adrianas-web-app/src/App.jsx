@@ -42,7 +42,7 @@ const Apps = () => {
   const [currentStepBar, setCurrentStepBar] = useState(1);
   const [codeOTP, setCodeOTP] = useState(["2", "6", "4", "2", "3"]);
   const [isOTPVerified, setIsOTPVerified] = useState(false);
-  const [authMode, setAuthMode] = useState("signin");
+  const [authMode, setAuthMode] = useState("forgotPassword");
   const [containerClassName, setContainerClassName] = useState("");
 
   useEffect(() => {

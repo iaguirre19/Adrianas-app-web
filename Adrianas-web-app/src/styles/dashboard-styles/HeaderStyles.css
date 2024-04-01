@@ -36,6 +36,7 @@
     color: var(--ic);
     cursor: pointer;
     transition: color  0.3s ease-in-out;
+    font-size: var(--ifs);
 }
 .fa-bell:hover{
     color: var(--pc);
@@ -44,7 +45,7 @@
     position: absolute;
     top: -.2rem;
     right: -.6rem;
-    background-color: var(--ic-2);
+    background-color: var(--sc);
     width: 68%;
     height: 68%;
     color: aliceblue;

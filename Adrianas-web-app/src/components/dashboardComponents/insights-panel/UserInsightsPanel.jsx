@@ -1,37 +1,31 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import "./InsightspanelStyles.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFileInvoiceDollar,
-  faMoneyBillTransfer,
-  faCar,
-  faFileArrowDown,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import PaymentDraw from "../payment-draw/PaymentDraw";
 import Button from "../../action/button/CustomButton";
-import PaymentHistoryTable from "../payments-history/PaymentsHistory";
+import TransactionsHistoryTable from "../payments-history/PaymentsHistory";
+import InsuranceDetails from "../insurance-detail/InsuranceDetails";
 import NavMenu from "../navbar-menu/NavMenu";
+import "./InsightspanelStyles.css";
+import Icons from "../../icons/goblal-icons/Icons";
 
-const UserPanles = () => {
-  const panelMenuData = ["Account", "Profile", "Payment", "Messages"];
-  const menuData = [{
-    id: 'account',
-    name: 'Account'
-  },
-  {
-    id: 'profile',
-    name: 'Profile'
-  },
-  {
-    id: 'payment',
-    name: "Payment"
-  },
-  {
-    id: 'messages',
-    name: 'Messages'
-  }]
+const UserPanels = () => {
+  const menuData = [
+    {
+      id: "account",
+      name: "Account",
+    },
+    {
+      id: "profile",
+      name: "Profile",
+    },
+    {
+      id: "payment",
+      name: "Payment",
+    },
+    {
+      id: "messages",
+      name: "Messages",
+    },
+  ];
   const [activeMenu, setActiveMenu] = useState(false);
 
   const onClickNextPayment = () => {
@@ -76,6 +70,27 @@ const UserPanles = () => {
       amount: 200,
       status: "Incomplete",
     },
+    {
+      id: 4,
+      paymentDate: "2024-02-28",
+      dueDate: "2024-03-14",
+      amount: 200,
+      status: "Incomplete",
+    },
+    {
+      id: 5,
+      paymentDate: "2024-02-28",
+      dueDate: "2024-03-14",
+      amount: 200,
+      status: "Incomplete",
+    },
+    {
+      id: 6,
+      paymentDate: "2024-02-28",
+      dueDate: "2024-03-14",
+      amount: 200,
+      status: "Incomplete",
+    },
   ];
 
   const dataButtonsAccount = [
@@ -106,106 +121,100 @@ const UserPanles = () => {
     personalInjury: "Medical assistance",
     roadside: "Emergencies on the road",
   };
-  const handleMenuOnClick = (e) => {
-    const menuSelected = e.target
-    console.log(menuSelected)
-  }
 
-  // const menuItemsWithKeys = panelMenuData.map((item) => ({
-  //   name: item,
-  //   key: uuidv4(),
-  // }));
+  const formatValueDollar = (amount) => {
+    if (typeof amount !== "number") {
+      return console.log("The value is not a number");
+    }
+
+    const formattedAmount = amount.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formattedAmount;
+  };
+  const formattedCoveredAmount = formatValueDollar(13646);
+
+  const insuranceDetailsData = [
+    {
+      label: "Insurance Type",
+      value: "Liability",
+    },
+    {
+      label: "Coverege Limit",
+      value: formattedCoveredAmount,
+    },
+    {
+      label: "Valid Until",
+      value: "June 30, 2024",
+    },
+  ];
+  const { liability, collision, personalInjury, roadside } =
+    insuranceCoverageData;
+
+  const handleMenuOnClick = (e) => {
+    const menuSelected = e.target;
+    console.log(menuSelected);
+  };
 
   return (
     <section className="user-panel-container">
       <div className="user-panel-content">
         <div className="panel-menu">
-          <NavMenu />
-          {/* <ul>
-            {menuItemsWithKeys.map((item) => (
-              <li onClick={handleMenuOnClick} className="panel-menu-item" key={item.key}>
-                <span>{item.name}</span>
-              </li>
-            ))}
-          </ul> */}
-          <div className="line-menu">
-            {/* {panelMenuData.map((line) => (
-              <div key={uuidv4()} className={`menu-line ${activeMenu ? "menu-selected" : ""}`}></div>
-            ))} */}
-          </div>
+          <NavMenu items={menuData} />
+          <div className="line-menu"></div>
         </div>
         <div className="left-panel-items">
           <div className="panel-insurance-overview card-panel">
             <div className="panel-header">
               <div className="panel-header-details">
                 <div className="panel-header-icon-content">
-                  <FontAwesomeIcon
-                    className="icon-dashboard"
-                    icon={faFileInvoiceDollar}
-                  />
+                  <Icons type="fileIcon" classIcon="file-icon" />
                 </div>
                 <div className="panel-header-title">
                   <h4>Insurance overview</h4>
                 </div>
               </div>
               <div className="panel-header-right">
-                <p>
+                <p className="date-insurance-overview">
                   Last underwriting <span>July 24th</span>
                 </p>
               </div>
             </div>
             <div className="insurance-details-container">
-              <div className="insurance-section">
-                <div className="section-header">
-                  <h4>Insurance type</h4>
-                </div>
-                <div className="insurance-type-value"></div>
-              </div>
-              <div className="vertical-line"></div>
-              <div className="insurance-section">
-                <div className="section-header">
-                  <h4>Coverage limit</h4>
-                </div>
-                <div className="coverage-limit-value"></div>
-              </div>
-              <div className="vertical-line"></div>
-              <div className="insurance-section">
-                <div className="section-header">
-                  <h4>Valid until</h4>
-                </div>
-                <div className="valid-until-value"></div>
-              </div>
+              <InsuranceDetails insuranceDetailData={insuranceDetailsData} />
             </div>
           </div>
-          <div className="payments-container card-panel">
+          <div className="transaction-panel-container card-panel">
             <div className="panel-header">
               <div className="panel-header-details">
                 <div className="panel-header-icon-content">
-                  <FontAwesomeIcon
-                    className="icon-dashboard"
-                    icon={faMoneyBillTransfer}
-                  />
+                  <Icons type="moneyBill" classIcon="money-bill-icon" />
                 </div>
                 <div className="panel-header-title">
                   <h4>Your Transactions</h4>
                 </div>
               </div>
-              <div className="panel-header-right">
-                <FontAwesomeIcon icon={faFileArrowDown} />
+              <div className="panel-header-right panel-header-transactions">
+                <div className="download-box-content">
+                  <Icons type="downloadIcon" classIcon="dowload-icon" />
+                </div>
               </div>
             </div>
-            <div className="payments-menu">
-              <div className="payments-options">
+            <div className="transactions-navbar">
+              <div className="payments-navbar-menu">
                 <span>Upcoming payments</span>
                 <span>Past payments</span>
               </div>
-              <div className="line-menu"></div>
+              <div className="line-menu">
+                <div className="line active"></div>
+                <div className="line"></div>
+              </div>
             </div>
-            <PaymentHistoryTable
-              transactions={transactionHistory}
-              Font={FontAwesomeIcon}
-              arrowRight={faChevronRight}
-            />
+            <TransactionsHistoryTable transactions={transactionHistory} />
           </div>
         </div>
         <div className="right-panel-items">
@@ -213,24 +222,23 @@ const UserPanles = () => {
             <div className="panel-header">
               <div className="panel-header-details">
                 <div className="panel-header-icon-content">
-                  <FontAwesomeIcon
-                    className="icon-dashboard"
-                    icon={faFileInvoiceDollar}
-                  />
+                  <Icons type="coinIcon" classIcon="coin-icon" />
                 </div>
                 <div className="panel-header-title">
                   <h4>Next Payments</h4>
                 </div>
               </div>
             </div>
-            {nextPaymentData.map((payment, index) => (
-              <PaymentDraw
-                key={index}
-                amount={payment.amount}
-                date={payment.date}
-                paymentNumber={payment.paymentNumber}
-              />
-            ))}
+            <div className="draw-main-container">
+              {nextPaymentData.map((payment, index) => (
+                <PaymentDraw
+                  key={index}
+                  amount={payment.amount}
+                  date={payment.date}
+                  paymentNumber={payment.paymentNumber}
+                />
+              ))}
+            </div>
             <div className="panel-next-payment-btn">
               <Button buttonData={dataButtonsAccount[0]} />
             </div>
@@ -239,32 +247,43 @@ const UserPanles = () => {
             <div className="panel-header">
               <div className="panel-header-details">
                 <div className="panel-header-icon-content">
-                  <FontAwesomeIcon className="icon-dashboard" icon={faCar} />
+                  <Icons type="carIcon" classIcon="car-icon" />
                 </div>
                 <div className="panel-header-title">
                   <h4>Car Insurance Coverage</h4>
                 </div>
               </div>
-              <div className="insurance-coverage-content">
-                <ul>
-                  <li>
-                    <p>Liability:</p>
-                    <span>{insuranceCoverageData.liability}</span>
-                  </li>
-                  <li>
-                    <p>Collision and comprehensive:</p>
-                    <span>{insuranceCoverageData.collision}</span>
-                  </li>
-                  <li>
-                    <p>Personal Injury:</p>
-                    <span>{insuranceCoverageData.personalInjury}</span>
-                  </li>
-                  <li>
-                    <p>Roadside Assistance:</p>
-                    <span>{insuranceCoverageData.roadside}</span>
-                  </li>
-                </ul>
-              </div>
+            </div>
+            <div className="insurance-coverage-content">
+              <ul>
+                <li>
+                  <p>
+                    <span>Liability:</span>
+                  </p>
+                  <span>{insuranceCoverageData.liability}</span>
+                </li>
+                <li>
+                  <p>
+                    <span>Collision and</span>
+                    <span>comprehensive:</span>
+                  </p>
+                  <span>{insuranceCoverageData.collision}</span>
+                </li>
+                <li>
+                  <p>
+                    <span>Personal</span>
+                    <span>Injury:</span>
+                  </p>
+                  <span>{insuranceCoverageData.personalInjury}</span>
+                </li>
+                <li>
+                  <p>
+                    <span>Roadside</span>
+                    <span>Assistance:</span>
+                  </p>
+                  <span>{insuranceCoverageData.roadside}</span>
+                </li>
+              </ul>
             </div>
           </div>
           <Button buttonData={dataButtonsAccount[1]} />
@@ -274,4 +293,4 @@ const UserPanles = () => {
   );
 };
 
-export default UserPanles;
+export default UserPanels;

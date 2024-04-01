@@ -4,13 +4,15 @@
     --ec: #FF3333; /*secondary color*/
     --ic: #909090; /*Icon color*/
     --ic-2:#BBBBBB;
-    --ich: #000000;
+    --ic-3:#ffffff; 
+    --ich: #000000; /*Icon color hover*/
     --vc: #33cc33;
     --bc:hsl(0, 0%, 86%); 
     --tcw:#ffffff;  /*Text color wite*/
     --cpc:#ffffff;  /*Card panel color wite*/
     --tcr:#DBDBDB; /*text color */
     --subtc:#999999; /* subtitle color*/
+    --subtc-cards: #929293;
     --lc:  #A2A2A2; /*Line color*/
     --hbb: #1F4A6D; /*Hover btn */
     --icm: #5131f3; /*icon color modal*/
@@ -26,13 +28,15 @@
     --tf: 3rem;
     --mtf: 2.2rem;
     --stf: 1.6rem; /*subtitle text font*/
-    --tnf: 1.4rem;
+    --tnf: 1.4rem;  /*Normal font text */
     --trc: 1.6rem;
     --phf: 1.4rem;
-    --ifs: 1.8rem;
+    --ifs: 2.2rem; /*Icon font size*/
     --lf: 1.2rem;
     --tpt: 1.6rem; 
     --tm: 1.6rem; /*Menu text*/
+    --tmp: 1.4rem; /*Panel Menu text*/
+    --ivf: 1.6rem; /*Important values font size*/
 
     /* Box shadowns */
 
@@ -87,9 +91,6 @@ body{
 }
 a{
     text-decoration: none;
-}
-.svg-inline--fa{
-    font-size: var(--ifs);
 }
 .profile-img{
     width: 4.8rem;
